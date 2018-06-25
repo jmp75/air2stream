@@ -2,7 +2,7 @@ SUBROUTINE forward_mode
 
 USE commondata
 
-IMPLICIT NONE 
+IMPLICIT NONE
 
 REAL(KIND=8):: eff_index
 
@@ -16,7 +16,7 @@ END SUBROUTINE
 
 
 !-------------------------------------------------------------------------------
-!				PSO
+!               PSO
 !-------------------------------------------------------------------------------
 
 
@@ -43,9 +43,9 @@ ALLOCATE (r(2*n_par),gbest(n_par),fit(n_particles),fitbest(n_particles))
 ! open file for the writing of all parameter set + efficiency index
 OPEN(unit=10,file=TRIM(folder)//'/0_'//TRIM(runmode)//'_'//fun_obj//'_'//TRIM(station)//'_'//series//'_'//TRIM(time_res)//'.out',status='unknown',action='write',form='binary')
 
-x=0; v=0;   
+x=0; v=0;
 r=0
-pbest=0; gbest=0; 
+pbest=0; gbest=0;
 fit=0; fitbest=0
 dw=(wmax-wmin)/n_run
 w=wmax
@@ -65,73 +65,73 @@ DO j=1,n_par
 END DO
 DO k=1,n_particles
     par=x(:,k)                          ! set of parameter of k-particle
-    CALL sub_1(eff_index)        
+    CALL sub_1(eff_index)
     fitbest(k)=eff_index                ! best fit (max efficiency index)
 END DO
-CALL best(fit,k,foptim)                 
+CALL best(fit,k,foptim)
 DO j=1,n_par
-	gbest(j)=x(j,k)                     ! global best (overall best position)
+    gbest(j)=x(j,k)                     ! global best (overall best position)
 END DO
 
 DO i=1,n_run                            !number of iterations
-    CALL random_seed()      
+    CALL random_seed()
     DO k=1,n_particles
-	    CALL random_number(r)
-	    status=0
+        CALL random_number(r)
+        status=0
         !update the velocity and the position of the particles
         DO j=1,n_par
-	        v(j,k)=w*v(j,k)+c1*r(j)*(pbest(j,k)-x(j,k))+c2*r(j+n_par)*(gbest(j)-x(j,k))
+            v(j,k)=w*v(j,k)+c1*r(j)*(pbest(j,k)-x(j,k))+c2*r(j+n_par)*(gbest(j)-x(j,k))
             x(j,k)=x(j,k)+v(j,k)
-		
-	        ! absorbing wall boundary condition
-	        IF (x(j,k).gt.parmax(j)) THEN
-	            x(j,k)= parmax(j)
-	            v(j,k)=0.0          
-                status=1            
-	        END IF
+
+            ! absorbing wall boundary condition
+            IF (x(j,k).gt.parmax(j)) THEN
+                x(j,k)= parmax(j)
+                v(j,k)=0.0
+                status=1
+            END IF
             IF (x(j,k).lt.parmin(j)) THEN
-	            x(j,k)= parmin(j)
-	            v(j,k)=0.0          
-                status=1            
+                x(j,k)= parmin(j)
+                v(j,k)=0.0
+                status=1
             END IF
         END DO
 
        ! new performances
-        IF (status.eq.0) THEN	
+        IF (status.eq.0) THEN
             par=x(:,k)                          ! set of k-particles
-            CALL sub_1(eff_index) 
-		    fit(k)=eff_index
-		    ! write on file if efficiency index is greater than mineff_index
+            CALL sub_1(eff_index)
+            fit(k)=eff_index
+            ! write on file if efficiency index is greater than mineff_index
             IF (eff_index .ge. mineff_index) THEN
                 WRITE(10)(x(j,k),j=1,n_par),eff_index
             END IF
         ELSE
-	        fit(k)=-1e30
+            fit(k)=-1e30
         ENDIF
-        
+
         ! Evaluation if the particle is improving its efficency
         IF (fit(k).gt.fitbest(k)) THEN
-		    fitbest(k)=fit(k)
-		    DO j=1,n_par
-			    pbest(j,k)=x(j,k)
-		    END DO
-	    END IF
-    END DO     
-    
+            fitbest(k)=fit(k)
+            DO j=1,n_par
+                pbest(j,k)=x(j,k)
+            END DO
+        END IF
+    END DO
+
     ! Evaluation which is the best particle
     CALL best(fitbest,k,foptim)
     DO j=1,n_par
-	    gbest(j)=pbest(j,k)
+        gbest(j)=pbest(j,k)
     END DO
 
     w=w-dw
 
     IF (i>=10) THEN
-	    IF (MOD(i,INT(REAL(n_run)/10))==0 ) THEN
-		    WRITE(*,1003) REAL(i)/REAL(n_run)*100.
-	    END IF
+        IF (MOD(i,INT(REAL(n_run)/10))==0 ) THEN
+            WRITE(*,1003) REAL(i)/REAL(n_run)*100.
+        END IF
     END IF
-	
+
    ! If the norm between pbest and gbest is less then tol for the perc percentage of the particles --> exit the cycle
     count=0
     DO k=1,n_particles
@@ -166,7 +166,7 @@ END SUBROUTINE
 
 
 !-------------------------------------------------------------------------------
-!				Latin Hypercube
+!               Latin Hypercube
 !-------------------------------------------------------------------------------
 
 
@@ -187,7 +187,7 @@ REAL(KIND=8),ALLOCATABLE,DIMENSION(:)::gbest
 WRITE(*,*) 'N. run = ', n_run
 
 ALLOCATE(gbest(n_par))
-  
+
 foptim=-999
 
 ! open file for the writing of all parameter set + efficiency index
@@ -197,39 +197,38 @@ CALL random_seed()
 
 ! Initialization of matrix permut + permutation (shuffle)
 DO j=1,n_par
-    permut(:,j)= (/ (i, i=1,n_run) /) 
-    CALL Shuffle(permut(:,j),n_run) 
-END DO     
+    permut(:,j)= (/ (i, i=1,n_run) /)
+    CALL Shuffle(permut(:,j),n_run)
+END DO
 
 DO i=1,n_run
     DO j=1,n_par
         CALL random_number(r)
         r=r + (REAL(permut(i,j))-1.0)
-        r=r/REAL(n_run) 
+        r=r/REAL(n_run)
 
         par(j)=parmin(j) + (parmax(j)-parmin(j))*r
     END DO
-    
+
     CALL sub_1(eff_index)
     fit=eff_index
-    
+
     ! Scrittura su file se eff_index maggiore di soglia indbound
     IF (eff_index .ge. mineff_index) THEN
         WRITE(10)(par(j),j=1,n_par),eff_index
     END IF
-                
+
     IF (fit .gt. foptim) THEN
         foptim=fit
         gbest=par
-    END IF        
-        
-    IF (i>=10) THEN
-	    IF (MOD(i,INT(REAL(n_run)/10))==0 ) THEN
-		    WRITE(*,1003) REAL(i)/REAL(n_run)*100.
-	    END IF
     END IF
-           
-END DO            
+
+    IF (i>=10) THEN
+        IF (MOD(i,INT(REAL(n_run)/10))==0 ) THEN
+            WRITE(*,1003) REAL(i)/REAL(n_run)*100.
+        END IF
+    END IF
+END DO
 
 par_best=gbest
 finalfit=foptim
@@ -247,7 +246,7 @@ END SUBROUTINE
 !----------------------------------------------------------------------------------------------------------------------------
 !----------------------------------------------------------------------------------------------------------------------------
 
- 
+
 SUBROUTINE Shuffle(a,n)
 
 IMPLICIT NONE
@@ -265,9 +264,3 @@ DO i = n, 2, -1
 END DO
 
 END SUBROUTINE Shuffle
-
-
-!----------------------------------------------------------------------------------------------------------------------------
-!----------------------------------------------------------------------------------------------------------------------------
-
-

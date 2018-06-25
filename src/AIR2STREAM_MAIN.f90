@@ -21,31 +21,31 @@ WRITE(*,*) 'Version 1.0.0 - October 2015'
 ! email contacts: s.piccolroaz@unitn.it, marco.toffolon@unitn.it
 !
 ! How to cite:
-! Toffolon M. and Piccolroaz S. (2015), A hybrid model for river water temperature 
-! as a function of air temperature and discharge, Environmental Research Letters  
+! Toffolon M. and Piccolroaz S. (2015), A hybrid model for river water temperature
+! as a function of air temperature and discharge, Environmental Research Letters
 ! (under review)
 !
 ! Related works (air2water):
 ! Piccolroaz S., M. Toffolon, and B. Majone (2013), A simple lumped model to convert
-! air temperature into surface water temperature in lakes, Hydrol. Earth Syst. Sci., 
+! air temperature into surface water temperature in lakes, Hydrol. Earth Syst. Sci.,
 ! 17, 3323-3338, doi:10.5194/hess-17-3323-2013
 !
-! Toffolon M., S. Piccolroaz, B. Majone, A.M. Soja, F. Peeters, M. Schmid and A. Wüest 
-! (2014), Prediction of surface water temperature from air temperature in lakes with 
+! Toffolon M., S. Piccolroaz, B. Majone, A.M. Soja, F. Peeters, M. Schmid and A. Wüest
+! (2014), Prediction of surface water temperature from air temperature in lakes with
 ! different morphology, Limnology and Oceanography, 59(6), 2185-2202, doi: 10.4319/lo.2014.59.6.2185
 !
-! Toffolon M., S. Piccolroaz, and B. Majone (2015), The role of stratification on lakes' thermal 
+! Toffolon M., S. Piccolroaz, and B. Majone (2015), The role of stratification on lakes' thermal
 ! response: The case of Lake Superior, Water Resources Research, doi: 10.1002/2014WR016555, in press
 !-------------------------------------------------------------------------------------
 
 CALL CPU_TIME(T1)
 
 ! allocation of parameter matrices
-ALLOCATE(parmin(n_par),stat=status) 
+ALLOCATE(parmin(n_par),stat=status)
 ALLOCATE(parmax(n_par),stat=status)
-ALLOCATE(flag_par(n_par),stat=status) 
-ALLOCATE(par(n_par),stat=status) 
-ALLOCATE(par_best(n_par),stat=status) 
+ALLOCATE(flag_par(n_par),stat=status)
+ALLOCATE(par(n_par),stat=status)
+ALLOCATE(par_best(n_par),stat=status)
 
 ! read input data
 CALL read_calibration
@@ -68,7 +68,7 @@ ELSE IF (runmode .eq. 'LATHYP') THEN
     CALL LH_mode
 END IF
 
-! forward with the best set of parameters   
+! forward with the best set of parameters
 CALL forward
 
 CALL CPU_TIME(T2)

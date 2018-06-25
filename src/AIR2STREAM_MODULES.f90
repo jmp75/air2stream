@@ -1,11 +1,11 @@
 MODULE commondata
 
 IMPLICIT NONE
-SAVE 
+SAVE
 ! Statement of variables
-INTEGER, PARAMETER :: n_par = 8    
-INTEGER :: n_Q      
-REAL(KIND=8) :: Qmedia, theta_j, theta_j1, DD_j, DD_j1    
+INTEGER, PARAMETER :: n_par = 8
+INTEGER :: n_Q
+REAL(KIND=8) :: Qmedia, theta_j, theta_j1, DD_j, DD_j1
 REAL(KIND=8), PARAMETER :: pi = ACOS(0.d0)*2.d0
 REAL(KIND=8), PARAMETER :: ttt = 1.0d0/365.0d0
 
@@ -33,4 +33,3 @@ INTEGER :: n_run,n_particles                    ! number of run and number of pa
 REAL(KIND=8) ::c1,c2,wmin,wmax                  ! parameters for the equation of motion of particles in PSO
 
 END MODULE commondata
-

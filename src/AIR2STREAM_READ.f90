@@ -10,7 +10,7 @@ LOGICAL result                      ! necessary for makedirqq
 
 ! read input information
 OPEN(unit=1,file='input.txt',status='old',action='read')
-READ(1,*)		                    ! header
+READ(1,*)                           ! header
 READ(1,*) name                      ! name of folder
 READ(1,*) air_station               ! name/ID of the air station
 READ(1,*) water_station             ! name/ID of the water station
@@ -36,55 +36,55 @@ result=makedirqq(folder)
 WRITE(*,*) 'Objective function ',fun_obj
 
 IF (runmode .eq. 'FORWARD') THEN
-    OPEN(unit=1,file=TRIM(name)//'/parameters_forward.txt',status='old',action='read')    
-    READ(1,*) (par(i), i=1,n_par)  
-ELSE IF (runmode .eq. 'PSO') THEN    
+    OPEN(unit=1,file=TRIM(name)//'/parameters_forward.txt',status='old',action='read')
+    READ(1,*) (par(i), i=1,n_par)
+ELSE IF (runmode .eq. 'PSO') THEN
     ! read PSO parameters
     OPEN(unit=1,file='PSO.txt',status='old',action='read')
-    READ(1,*)		    ! header
+    READ(1,*)           ! header
     READ(1,*) n_particles
     READ(1,*) c1,c2
     READ(1,*) wmax,wmin
     CLOSE(1)
 END IF
 
-IF (runmode .eq. 'PSO' .or. runmode .eq. 'LATHYP') THEN    
+IF (runmode .eq. 'PSO' .or. runmode .eq. 'LATHYP') THEN
     ! read model parameters
     OPEN(unit=1,file=TRIM(name)//'/parameters.txt',status='old',action='read')
 
-    READ(1,*) (parmin(i),i=1,n_par);	
+    READ(1,*) (parmin(i),i=1,n_par);
     READ(1,*) (parmax(i),i=1,n_par);
-    
-! parameters that are not used are zeroed    
+
+! parameters that are not used are zeroed
     flag_par=.true.
     IF (version == 3) THEN                                      !air2stream with 3 parameters
-        parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;      
-	    parmin(5)=0;	parmax(5)=0;    flag_par(5)=.false.;
-	    parmin(6)=0;	parmax(6)=0;    flag_par(6)=.false.;
-	    parmin(7)=0;	parmax(7)=0;    flag_par(7)=.false.;
-	    parmin(8)=0;	parmax(8)=0;    flag_par(8)=.false.; 
-	END IF 
-	IF (version == 4) THEN                                      !air2stream with 4 parameters
-	     parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;    
-	     parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.; 
-	     parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.; 
-	     parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.; 
-	END IF
+        parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;
+        parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+        parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.;
+        parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.;
+        parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    END IF
+    IF (version == 4) THEN                                      !air2stream with 4 parameters
+         parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+         parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.;
+         parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.;
+         parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    END IF
     IF (version == 5) THEN                                      !air2stream with 5 parameters
-  	    parmin(4)=0;	parmax(4)=0;    flag_par(4)=.false.;
-	    parmin(5)=0;	parmax(5)=0;    flag_par(5)=.false.;
-	    parmin(8)=0;	parmax(8)=0;    flag_par(8)=.false.;
-	ENDIF
-	IF (version == 7) THEN                                      !air2stream with 7 parameters
-         parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;      
-    END IF 
+        parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;
+        parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+        parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    ENDIF
+    IF (version == 7) THEN                                      !air2stream with 7 parameters
+         parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;
+    END IF
     IF (version == 4) THEN                                      !air2stream with 8 parameters
-	     parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;    
-	     parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.; 
-	     parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.; 
-	     parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.; 
-	END IF
-	
+         parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+         parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.;
+         parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.;
+         parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    END IF
+
     CLOSE(1)
 
     ! write parameters
@@ -103,7 +103,7 @@ RETURN
 END
 
 !-------------------------------------------------------------------------------
-!				READ VALIDATION PERIOD
+!               READ VALIDATION PERIOD
 !-------------------------------------------------------------------------------
 SUBROUTINE read_validation
 
@@ -122,7 +122,7 @@ RETURN
 END
 
 !-------------------------------------------------------------------------------
-!				READ TEMPERATURE FILE
+!               READ TEMPERATURE FILE
 !-------------------------------------------------------------------------------
 SUBROUTINE read_Tseries(p)
 
@@ -145,13 +145,13 @@ END IF
 
 OPEN(unit=3,file=TRIM(name)//'/'//TRIM(station)//'_'//series//p//'.txt',status='unknown',action='read', iostat=status)
 openif3: IF (status==0) THEN
-	readloop3: DO
-		READ(3,*,iostat=status)
-		IF (status/=0) EXIT
-		n_tot=n_tot+1
-	END DO readloop3
-	readif3: IF(status>0) THEN
-	END IF readif3	
+    readloop3: DO
+        READ(3,*,iostat=status)
+        IF (status/=0) EXIT
+        n_tot=n_tot+1
+    END DO readloop3
+    readif3: IF(status>0) THEN
+    END IF readif3
 END IF openif3
 REWIND(3)
 
@@ -167,12 +167,12 @@ n_year=CEILING(n_tot/365.25)
 n_tot=n_tot+365             ! the 1st year is replicated. The 1st year is always considered 365 days long
 ALLOCATE(date(n_tot,3),stat=status)
 ALLOCATE(Tair(n_tot),stat=status)
-ALLOCATE(Twat_obs(n_tot),stat=status) 
-ALLOCATE(Twat_obs_agg(n_tot),stat=status) 
-ALLOCATE(Twat_mod(n_tot),stat=status) 
-ALLOCATE(Twat_mod_agg(n_tot),stat=status) 
+ALLOCATE(Twat_obs(n_tot),stat=status)
+ALLOCATE(Twat_obs_agg(n_tot),stat=status)
+ALLOCATE(Twat_mod(n_tot),stat=status)
+ALLOCATE(Twat_mod_agg(n_tot),stat=status)
 ALLOCATE(tt(n_tot),stat=status)
-ALLOCATE(Q(n_tot),stat=status) 
+ALLOCATE(Q(n_tot),stat=status)
 
 Qmedia = 0.0d0
 n_Q = 0
@@ -181,11 +181,11 @@ DO i=366,n_tot
     READ(3,*) (date(i,j),j=1,3),Tair(i),Twat_obs(i),Q(i)
     IF ( Q(i) .ne. -999 ) THEN
     n_Q = n_Q + 1
-    Qmedia = Qmedia + Q(i) 
+    Qmedia = Qmedia + Q(i)
     END IF
 END DO
 Qmedia = Qmedia / REAL(n_Q)
-           
+
 year_ini=date(366,1)
 date(1:365,:)=-999
 Tair(1:365)=Tair(366:730)
@@ -221,5 +221,5 @@ DO i=1,n_year
     END IF
 END DO
 
-100 RETURN 
+100 RETURN
 END
