@@ -333,7 +333,7 @@ SUBROUTINE statis
 USE commondata
 IMPLICIT NONE
 
-INTEGER :: i, k, d, status
+INTEGER :: i, status
 
 mean_obs=0.d0
 TSS_obs=0.d0
@@ -370,12 +370,12 @@ CALL funcobj(ei_check)
 IF (ABS(ei_check - finalfit) .gt. 0.0001) THEN
     WRITE(*,*) 'Errore efficienza in forward'
     WRITE(*,*) ei_check, finalfit
-    PAUSE
+    !PAUSE
 ELSE
     WRITE(*,*) 'Controllo superato'
 END IF
 
-WRITE(11,'(<n_par>(f10.6,1x))') (par_best(i),i=1,n_par)
+WRITE(11,'(*(f10.6,1x))') (par_best(i),i=1,n_par)
 WRITE(11,'(f10.6)') ei_check
 
 OPEN(UNIT=12,FILE=TRIM(folder)//'/2_'//TRIM(runmode)//'_'//fun_obj//'_'//TRIM(station)//'_'//series//'c_'//TRIM(time_res)//'.out',STATUS='unknown',ACTION='write')
@@ -412,7 +412,7 @@ WRITE(13,1005) (date(i,j),j=1,3),Tair(i),Twat_obs(i),Twat_mod(i),Twat_obs_agg(i)
 END DO
 CLOSE(13)
 
-1004 FORMAT(i4,1x,i4,1x,i4,1x,5(1x,f10.5))
+!1004 FORMAT(i4,1x,i4,1x,i4,1x,5(1x,f10.5))
 1005 FORMAT(i4,1x,i4,1x,i4,1x,6(1x,f10.5))
 
 200 RETURN

@@ -1,15 +1,83 @@
+SUBROUTINE print_Help
+    WRITE(*,*)''
+    WRITE(*,*)'usage:'
+    WRITE(*,*)'   air2stream [options ...]'
+    WRITE(*,*)''
+    WRITE(*,*)'options:'
+    WRITE(*,*)'   -f <string> read input data from <string>'
+    WRITE(*,*)'   -h          display this information'
+    WRITE(*,*)'    in case of no arguments, default inputfile <input.txt> is used'
+    WRITE(*,*)''
+RETURN
+END SUBROUTINE
+
+SUBROUTINE print_ByeBye
+    WRITE(*,*)"***************************************************************************"
+    WRITE(*,*)"*   that's it! (mailto: s.piccolroaz@unitn.it, marco.toffolon@unitn.it)   *"
+    WRITE(*,*)"***************************************************************************"
+RETURN
+END SUBROUTINE
+
+
+!-------------------------------------------------------------------------------
+!               PARSE COMMAND DATA
+!-------------------------------------------------------------------------------
+SUBROUTINE parse_command_args
+
+USE commondata
+
+IMPLICIT NONE
+INTEGER:: cnt, len, status
+character:: c*30
+LOGICAL:: knownArg = .true.
+
+cnt = command_argument_count ()
+
+IF (cnt == 0) THEN
+    inputfile = 'input.txt'
+    WRITE (*,*) 'default input file: ', inputfile
+ELSEIF (cnt == 1) THEN
+    CALL get_command_argument (cnt, c, len, status)
+    IF ((status .eq. 0).and.(c (1:len) .eq. "-h")) THEN
+        CALL print_Help
+        CALL print_ByeBye
+        STOP
+    ELSE
+        knownArg = .false.
+    ENDIF
+ELSEIF (cnt == 2) THEN
+    CALL get_command_argument (1, c, len, status)
+    IF ((status .eq. 0).and.(c (1:len) .eq. "-f")) THEN
+        CALL get_command_argument (2, c, len, status)
+        inputfile = c(1:len)
+        WRITE (*,*) 'input file: ', inputfile
+    ELSE
+        knownArg = .false.
+    ENDIF
+ENDIF
+
+IF (knownArg .eqv. .false.) THEN
+    WRITE (*,*) ' Sorry, but the given command arguments are not recognized... please try with [-h] flag.'
+    CALL print_ByeBye
+    STOP
+ENDIF
+
+RETURN
+END
+
+
 SUBROUTINE read_calibration
 
 USE commondata
-USE ifport                          ! necessary for makedirqq
+!USE ifport                          ! necessary for makedirqq
 
 IMPLICIT NONE
-INTEGER:: i, j, status
+INTEGER:: i !, status
 CHARACTER(LEN=1) :: string
-LOGICAL result                      ! necessary for makedirqq
+!LOGICAL:: result                      ! necessary for makedirqq
 
 ! read input information
-OPEN(unit=1,file='input.txt',status='old',action='read')
+OPEN(unit=1,file=inputfile,status='old',action='read')
 READ(1,*)                           ! header
 READ(1,*) name                      ! name of folder
 READ(1,*) air_station               ! name/ID of the air station
@@ -32,7 +100,15 @@ station=TRIM(air_station)//'_'//TRIM(water_station)
 WRITE(string,'(i1)' ) version
 
 folder = TRIM(name)//'/output_'//string//'/'
-result=makedirqq(folder)
+
+! subfolder creation is system-specific
+#ifdef _WIN32
+  call system('mkdir ' // TRIM(name)//'\output_'//TRIM(version)//'\')
+#else
+  call system('mkdir -p ' // folder)
+#endif
+!result=makedirqq(folder)
+
 WRITE(*,*) 'Objective function ',fun_obj
 
 IF (runmode .eq. 'FORWARD') THEN
@@ -90,8 +166,8 @@ IF (runmode .eq. 'PSO' .or. runmode .eq. 'LATHYP') THEN
     ! write parameters
     OPEN(unit=2,file=TRIM(folder)//'/parameters.txt',status='unknown',action='write')
     WRITE(2,'(I2,A)') n_par, '   !numero parametri'
-    WRITE(2,'(<n_par>(F10.5,1x))') (parmin(i),i=1,n_par)
-    WRITE(2,'(<n_par>(F10.5,1x))') (parmax(i),i=1,n_par)
+    WRITE(2,'(*(F10.5,1x))') (parmin(i),i=1,n_par)
+    WRITE(2,'(*(F10.5,1x))') (parmax(i),i=1,n_par)
     CLOSE(2)
 
 END IF
@@ -133,7 +209,7 @@ IMPLICIT NONE
 INTEGER :: i, j, k, status
 INTEGER :: n_year, leap, year_ini
 CHARACTER(LEN=1),INTENT(IN) :: p
-CHARACTER(LEN=10) :: period
+CHARACTER(LEN=11) :: period
 
 n_tot=0;
 

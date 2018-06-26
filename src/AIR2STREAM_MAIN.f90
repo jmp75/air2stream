@@ -2,7 +2,7 @@ PROGRAM air2stream
 
 USE commondata
 IMPLICIT NONE
-INTEGER :: i,j,k,status
+INTEGER :: status
 REAL(KIND=8):: T1,T2
 
 WRITE(*,*) '       .__       ________            __                                  '
@@ -11,7 +11,7 @@ WRITE(*,*) '\__  \ |  \_  __ \/  ____/  /  ___/\   __\_  __ \_/ __ \\__  \  /   
 WRITE(*,*) ' / __ \|  ||  | \/       \  \___ \  |  |  |  | \/\  ___/ / __ \|  Y Y  \ '
 WRITE(*,*) '(____  /__||__|  \_______ \/____  > |__|  |__|    \___  >____  /__|_|  / '
 WRITE(*,*) '     \/                  \/     \/                    \/     \/      \/  '
-WRITE(*,*) 'Version 1.0.0 - October 2015'
+WRITE(*,*) 'Version 1.2.0 - June 2018'
 
 !-------------------------------------------------------------------------------------
 !
@@ -47,6 +47,9 @@ ALLOCATE(flag_par(n_par),stat=status)
 ALLOCATE(par(n_par),stat=status)
 ALLOCATE(par_best(n_par),stat=status)
 
+! parsing command arguments
+CALL parse_command_args
+
 ! read input data
 CALL read_calibration
 
@@ -73,6 +76,10 @@ CALL forward
 
 CALL CPU_TIME(T2)
 print *, 'Computation time was ', T2-T1, 'seconds.'
+
+
+!it is time to go
+CALL print_ByeBye
 
 STOP
 END PROGRAM air2stream
