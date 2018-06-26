@@ -1,0 +1,4 @@
+*sublime*
+*output*
+build/*
+!build/README.md
