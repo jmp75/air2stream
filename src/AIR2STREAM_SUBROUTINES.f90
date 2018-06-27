@@ -37,23 +37,31 @@ ELSE
     Twat_mod(1)=Twat_obs(1)
 END IF
 
-DO j=1,n_tot-1
-
-        IF (mod_num .eq. 'RK2') THEN
+SELECT CASE (mod_num)
+    CASE ('RK2')
+        DO j=1,n_tot-1
             CALL RK4_air2stream(Tair(j), Q(j), Twat_mod(j), tt(j), K1)
             CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j) + K1, tt(j) + ttt, K2)
-        ENDIF
-
-        IF (mod_num .eq. 'RK4') THEN
+            Twat_mod(j+1)=Twat_mod(j) + 0.5d0*(K1 + K2);
+            Twat_mod(j+1)=MAX(Twat_mod(j+1),Tice_cover);
+        END DO
+    CASE ('RK4')
+        DO j=1,n_tot-1
             CALL RK4_air2stream(Tair(j), Q(j), Twat_mod(j), tt(j), K1)
             CALL RK4_air2stream(0.5d0*(Tair(j) + Tair(j+1)), 0.5d0*(Q(j) + Q(j+1)), Twat_mod(j) + 0.5d0*K1, tt(j) + 0.5*ttt, K2)  !------------RK4
             CALL RK4_air2stream(0.5d0*(Tair(j) + Tair(j+1)), 0.5d0*(Q(j) + Q(j+1)), Twat_mod(j) + 0.5d0*K2, tt(j) + 0.5*ttt, K3)  !------------RK4
-            CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j) + K3, tt(j) + ttt, K4)                                             !------------RK4
-
-        ELSEIF (mod_num .eq. 'EUL') THEN
+            CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j) + K3, tt(j) + ttt, K4)
+            Twat_mod(j+1)=Twat_mod(j) + 1.0d0/6.0d0*(K1 + 2.0d0*K2 + 2.0d0*K3 + K4 );
+            Twat_mod(j+1)=MAX(Twat_mod(j+1),Tice_cover);
+        END DO
+    CASE ('EUL')
+        DO j=1,n_tot-1
             CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j), tt(j+1), K1)
-
-        ELSEIF (mod_num .eq. 'CRN') THEN
+            Twat_mod(j+1)=Twat_mod(j) + K1
+            Twat_mod(j+1)=MAX(Twat_mod(j+1),Tice_cover);
+        END DO
+    CASE ('CRN')
+        DO j=1,n_tot-1
             IF ( version==8 .or. version==7 .or. version==4) THEN
                 theta_j = Q(j)/(Qmedia) ;
                 theta_j1 = Q(j+1)/(Qmedia) ;
@@ -68,19 +76,54 @@ DO j=1,n_tot-1
                 Twat_mod(j+1) = ( Twat_mod(j)*(1.0d0-0.5d0*par(3))+par(1)+0.5d0*par(2)*(Tair(j) + &
                 Tair(j+1))+0.5d0*par(6)*COS(2.d0*pi*((tt(j))-par(7)))+0.5d0*par(6)*COS(2.d0*pi*((tt(j+1))-par(7))) )/(1.0d0+0.5d0*par(3));
             ENDIF
-        ENDIF
+            Twat_mod(j+1)=MAX(Twat_mod(j+1),Tice_cover);
+        END DO
+END SELECT
 
-    IF (mod_num .eq. 'RK2') THEN
-        Twat_mod(j+1)=Twat_mod(j) + 0.5d0*(K1 + K2);
-    ELSEIF (mod_num .eq. 'RK4') THEN
-        Twat_mod(j+1)=Twat_mod(j) + 1.0d0/6.0d0*(K1 + 2.0d0*K2 + 2.0d0*K3 + K4 );
-    ELSEIF (mod_num .eq. 'EUL') THEN
-        Twat_mod(j+1)=Twat_mod(j) + K1;
-    ENDIF
+! DO j=1,n_tot-1
 
-    Twat_mod(j+1)=MAX(Twat_mod(j+1),Tice_cover);
+!         IF (mod_num .eq. 'RK2') THEN
+!             CALL RK4_air2stream(Tair(j), Q(j), Twat_mod(j), tt(j), K1)
+!             CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j) + K1, tt(j) + ttt, K2)
+!         ENDIF
 
-END DO
+!         IF (mod_num .eq. 'RK4') THEN
+!             CALL RK4_air2stream(Tair(j), Q(j), Twat_mod(j), tt(j), K1)
+!             CALL RK4_air2stream(0.5d0*(Tair(j) + Tair(j+1)), 0.5d0*(Q(j) + Q(j+1)), Twat_mod(j) + 0.5d0*K1, tt(j) + 0.5*ttt, K2)  !------------RK4
+!             CALL RK4_air2stream(0.5d0*(Tair(j) + Tair(j+1)), 0.5d0*(Q(j) + Q(j+1)), Twat_mod(j) + 0.5d0*K2, tt(j) + 0.5*ttt, K3)  !------------RK4
+!             CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j) + K3, tt(j) + ttt, K4)                                             !------------RK4
+
+!         ELSEIF (mod_num .eq. 'EUL') THEN
+!             CALL RK4_air2stream(Tair(j+1), Q(j+1), Twat_mod(j), tt(j+1), K1)
+
+!         ELSEIF (mod_num .eq. 'CRN') THEN
+!             IF ( version==8 .or. version==7 .or. version==4) THEN
+!                 theta_j = Q(j)/(Qmedia) ;
+!                 theta_j1 = Q(j+1)/(Qmedia) ;
+!                 DD_j = theta_j**par(4);
+!                 DD_j1 = theta_j1**par(4);
+
+!                 Twat_mod(j+1) = ( Twat_mod(j) + 0.5d0/DD_j*(par(1)+par(2)*Tair(j)-par(3)*Twat_mod(j)+ theta_j*(par(5)+par(6)*COS(2.d0*pi*((tt(j))-par(7)))-par(8)*Twat_mod(j))) + &
+!                 0.5d0/DD_j1*(par(1)+par(2)*Tair(j+1)+theta_j1*(par(5)+par(6)*COS(2.d0*pi*((tt(j+1))-par(7))) ) )) / (1.0d0+0.5d0*par(8)*theta_j1/DD_j1+0.5d0*par(3)/DD_j1);
+
+!             ELSEIF ( version==5 .or. version==3 ) THEN
+
+!                 Twat_mod(j+1) = ( Twat_mod(j)*(1.0d0-0.5d0*par(3))+par(1)+0.5d0*par(2)*(Tair(j) + &
+!                 Tair(j+1))+0.5d0*par(6)*COS(2.d0*pi*((tt(j))-par(7)))+0.5d0*par(6)*COS(2.d0*pi*((tt(j+1))-par(7))) )/(1.0d0+0.5d0*par(3));
+!             ENDIF
+!         ENDIF
+
+!     IF (mod_num .eq. 'RK2') THEN
+!         Twat_mod(j+1)=Twat_mod(j) + 0.5d0*(K1 + K2);
+!     ELSEIF (mod_num .eq. 'RK4') THEN
+!         Twat_mod(j+1)=Twat_mod(j) + 1.0d0/6.0d0*(K1 + 2.0d0*K2 + 2.0d0*K3 + K4 );
+!     ELSEIF (mod_num .eq. 'EUL') THEN
+!         Twat_mod(j+1)=Twat_mod(j) + K1;
+!     ENDIF
+
+!     Twat_mod(j+1)=MAX(Twat_mod(j+1),Tice_cover);
+
+! END DO
 
 RETURN
 END
