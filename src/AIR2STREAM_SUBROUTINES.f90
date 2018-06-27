@@ -101,34 +101,57 @@ REAL(KIND=8), INTENT(OUT) :: K
 REAL(KIND=8), INTENT(IN) :: Ta, Tw, time, QQ
 REAL(KIND=8) :: DD
 
-IF ( version==8 .or. version==4 ) THEN
-    DD = (QQ / Qmedia )**par(4) ;
-ELSEIF ( version==5 .or. version==3 ) THEN
-    DD = 0.0d0
-ELSE
-    DD=1.0d0
-END IF
+
+SELECT CASE (version)
+    CASE (3)
+        DD = 0.0d0
+        K = ( par(1) + par(2)*Ta -  par(3)*Tw )
+    CASE (4)
+        DD = (QQ / Qmedia )**par(4)
+        K =( par(1) + par(2)*Ta - par(3)*Tw ) / DD
+    CASE (5)
+        DD = 0.0d0
+        K = par(1) + par(2)*Ta -  par(3)*Tw + par(6)*COS(2.d0*pi*(time-par(7)))
+    CASE (7)
+        DD=1.0d0
+        K = par(1) + par(2)*Ta - par(3)*Tw  +  QQ/Qmedia * (  par(5) + par(6)*COS(2.d0*pi*(time-par(7))) - par(8)*Tw )
+        K = K/DD
+    CASE (8)
+        DD = (QQ / Qmedia )**par(4)
+        K = par(1) + par(2)*Ta - par(3)*Tw  +  QQ/Qmedia * (  par(5) + par(6)*COS(2.d0*pi*(time-par(7))) - par(8)*Tw )
+        K = K/DD
+    CASE default
+        DD=1.0d0
+END SELECT
+
+! IF ( version==8 .or. version==4 ) THEN
+!     DD = (QQ / Qmedia )**par(4)
+! ELSEIF ( version==5 .or. version==3 ) THEN
+!     DD = 0.0d0
+! ELSE
+!     DD=1.0d0
+! END IF
 
 
-IF ( version==3 ) THEN
-  K = ( par(1) + par(2)*Ta -  par(3)*Tw )
-END IF
+! IF ( version==3 ) THEN
+!   K = ( par(1) + par(2)*Ta -  par(3)*Tw )
+! END IF
+!
+!IF ( version==5 ) THEN
+!  K = par(1) + par(2)*Ta -  par(3)*Tw + par(6)*COS(2.d0*pi*(time-par(7)))
+!END IF
 
-IF ( version==5 ) THEN
-  K = par(1) + par(2)*Ta -  par(3)*Tw + par(6)*COS(2.d0*pi*(time-par(7)))
-END IF
+!IF ( version==8 .or. version==7 ) THEN
+!    K = par(1) + par(2)*Ta - par(3)*Tw  +  QQ/Qmedia * (  par(5) + par(6)*COS(2.d0*pi*(time-par(7))) - par(8)*Tw )
+!    K = K/DD
+!END IF
 
-IF ( version==8 .or. version==7 ) THEN
-    K = par(1) + par(2)*Ta - par(3)*Tw  +  QQ/Qmedia * (  par(5) + par(6)*COS(2.d0*pi*(time-par(7))) - par(8)*Tw )
-    K = K/DD
-END IF
-
-IF ( version==4 ) THEN
-    K =( par(1) + par(2)*Ta - par(3)*Tw ) / DD;
-END IF
+!IF ( version==4 ) THEN
+!    K =( par(1) + par(2)*Ta - par(3)*Tw ) / DD;
+!END IF
 
 RETURN
-END
+END SUBROUTINE
 
 !-------------------------------------------------------------------------------
 !               CALCULATION OF THE OBJECTIVE FUNCTION
@@ -181,7 +204,7 @@ ELSEIF  (fun_obj=='RMS') THEN
     END DO
     ind=-DSQRT(TSS/REAL(n_dat)) ! sign - --> the calibration procedure maximizes ind.
 ELSE
-    WRITE(*,*) 'Errore nella scelta della f. obiettivo'
+    WRITE(*,*) 'ERROR: choice of objective function'
 END IF
 
 RETURN
@@ -196,11 +219,11 @@ USE commondata
 IMPLICIT NONE
 
 INTEGER :: i, j, k, status, pp
-INTEGER :: n_inf, n_pos, n_units, n_days, count, pos_tmp
+INTEGER :: n_inf, n_pos, n_units = 0, n_days, count, pos_tmp
 INTEGER :: month, month_curr
 INTEGER, DIMENSION(:,:), ALLOCATABLE :: A
 INTEGER, DIMENSION(:), ALLOCATABLE :: B
-REAL(KIND=8) :: tmp
+REAL(KIND=8) :: tmp = 0.d0
 
 pp=LEN_TRIM(time_res)
 IF (pp==2) THEN
@@ -305,7 +328,7 @@ ELSEIF (unit=='m') THEN                     ! monthly resolution
         n_pos=n_pos-count
     END IF
 ELSE
-    WRITE(*,*) 'Error: variable time_res'
+    WRITE(*,*) 'ERROR: variable time_res'
 END IF
 
 n_dat=n_inf-1
@@ -333,7 +356,7 @@ SUBROUTINE statis
 USE commondata
 IMPLICIT NONE
 
-INTEGER :: i, status
+INTEGER :: i
 
 mean_obs=0.d0
 TSS_obs=0.d0
@@ -368,11 +391,11 @@ CALL call_model
 ! Control: efficency index
 CALL funcobj(ei_check)
 IF (ABS(ei_check - finalfit) .gt. 0.0001) THEN
-    WRITE(*,*) 'Errore efficienza in forward'
+    WRITE(*,*) 'ERROR: forward efficiency'
     WRITE(*,*) ei_check, finalfit
     !PAUSE
 ELSE
-    WRITE(*,*) 'Controllo superato'
+    WRITE(*,*) 'Checkpoint: passed!'
 END IF
 
 WRITE(11,'(*(f10.6,1x))') (par_best(i),i=1,n_par)

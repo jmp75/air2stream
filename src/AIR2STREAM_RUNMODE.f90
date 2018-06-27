@@ -157,7 +157,7 @@ par_best=gbest
 finalfit=foptim
 
 WRITE(*,*) 'Efficiency Index in calibration', finalfit
-1003 FORMAT('Calcolo al', 1x, f5.1 ,1x,'%')
+1003 FORMAT('->',1x, f5.1 ,1x,'% completed')
 
 CLOSE(10)
 
@@ -233,11 +233,9 @@ END DO
 par_best=gbest
 finalfit=foptim
 
-WRITE(*,*) 'Indice efficienza calibrazione', finalfit
+WRITE(*,*) 'Calibration efficiency index:', finalfit
 
-!    CLOSE(10)
-
-1003 FORMAT('Calcolo al', 1x, f5.1 ,1x,'%')
+1003 FORMAT('->',1x, f5.1 ,1x,'% completed')
 
 RETURN
 END SUBROUTINE

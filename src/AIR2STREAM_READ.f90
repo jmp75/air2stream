@@ -38,7 +38,7 @@ IF (cnt == 0) THEN
     WRITE (*,*) 'default input file: ', inputfile
 ELSEIF (cnt == 1) THEN
     CALL get_command_argument (cnt, c, len, status)
-    IF ((status .eq. 0).and.(c (1:len) .eq. "-h")) THEN
+    IF ((status .eq. 0).and.( (c (1:len) .eq. "-h").or.(c (1:len) .eq. "--help") )) THEN
         CALL print_Help
         CALL print_ByeBye
         STOP
@@ -69,12 +69,10 @@ END
 SUBROUTINE read_calibration
 
 USE commondata
-!USE ifport                          ! necessary for makedirqq
 
 IMPLICIT NONE
 INTEGER:: i !, status
 CHARACTER(LEN=1) :: string
-!LOGICAL:: result                      ! necessary for makedirqq
 
 ! read input information
 OPEN(unit=1,file=inputfile,status='old',action='read')
@@ -165,7 +163,7 @@ IF (runmode .eq. 'PSO' .or. runmode .eq. 'LATHYP') THEN
 
     ! write parameters
     OPEN(unit=2,file=TRIM(folder)//'/parameters.txt',status='unknown',action='write')
-    WRITE(2,'(I2,A)') n_par, '   !numero parametri'
+    WRITE(2,'(A,I2)') ' number of parameters: ', n_par
     WRITE(2,'(*(F10.5,1x))') (parmin(i),i=1,n_par)
     WRITE(2,'(*(F10.5,1x))') (parmax(i),i=1,n_par)
     CLOSE(2)
