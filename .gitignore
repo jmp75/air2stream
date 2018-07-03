@@ -2,3 +2,4 @@
 *output*
 build/*
 !build/README.md
+air2stream
