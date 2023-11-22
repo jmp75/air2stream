@@ -21,7 +21,7 @@ from distutils.command.build import build as _build
 # http://stackoverflow.com/a/18159969/2192272
 
 _MODULE_NAME="a2s"
-_LIB_NAME=f"_{_MODULE_NAME}.cpython-39-x86_64-linux-gnu"
+_LIB_NAME=f"_{_MODULE_NAME}.cpython-*-x86_64-linux-gnu"
 
 def _post_install(dir):
     from subprocess import call
