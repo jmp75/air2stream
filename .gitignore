@@ -2,6 +2,11 @@
 *output*
 build/*
 !build/README.md
-air2stream
+./air2stream
 
 *.mod
+
+*.o
+*.so
+*.log
+__pycache__/

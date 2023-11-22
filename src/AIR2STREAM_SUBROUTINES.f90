@@ -527,3 +527,33 @@ END IF
 
 RETURN
 END
+
+
+SUBROUTINE init_param_arrays()
+    USE commondata
+    IMPLICIT NONE
+    INTEGER :: status
+    ! allocation of parameter matrices
+    ALLOCATE(parmin(n_par),stat=status)
+    ALLOCATE(parmax(n_par),stat=status)
+    ALLOCATE(flag_par(n_par),stat=status)
+    ALLOCATE(par(n_par),stat=status)
+    ALLOCATE(par_best(n_par),stat=status)
+END
+
+SUBROUTINE init_input_arrays(n)
+    USE commondata
+    IMPLICIT NONE
+    INTEGER :: n
+    INTEGER :: status
+    n_tot=n
+    ALLOCATE(date(n_tot,3),stat=status)
+    ALLOCATE(Tair(n_tot),stat=status)
+    ALLOCATE(Twat_obs(n_tot),stat=status)
+    ALLOCATE(Twat_obs_agg(n_tot),stat=status)
+    ALLOCATE(Twat_mod(n_tot),stat=status)
+    ALLOCATE(Twat_mod_agg(n_tot),stat=status)
+    ALLOCATE(tt(n_tot),stat=status)
+    ALLOCATE(Q(n_tot),stat=status)
+
+END
