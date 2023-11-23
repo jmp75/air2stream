@@ -8,6 +8,7 @@ from setuptools import setup
 from codecs import open
 import os
 import re
+import sys
 
 
 ######################################
@@ -21,7 +22,8 @@ from distutils.command.build import build as _build
 # http://stackoverflow.com/a/18159969/2192272
 
 _MODULE_NAME="a2s"
-_LIB_NAME=f"_{_MODULE_NAME}.cpython-*-x86_64-linux-gnu"
+_py_version=f"{sys.version_info.major}{sys.version_info.minor}"
+_LIB_NAME=f"_{_MODULE_NAME}.cpython-{_py_version}-x86_64-linux-gnu"
 
 def _post_install(dir):
     from subprocess import call
