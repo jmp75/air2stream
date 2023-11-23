@@ -42,3 +42,5 @@ import air2stream
 from air2stream.native import a2s
 dir(a2s)
 ```
+
+Next, you can open the sample notebook(s) in [../air2stream/notebooks](../air2stream/notebooks)
