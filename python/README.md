@@ -25,7 +25,7 @@ mamba install wheel twine
 ```
 
 ```sh
-./regen_wrapper.sh 
+./regen_wrapper.sh ${a2s_src}
 ```
 
 ```sh
