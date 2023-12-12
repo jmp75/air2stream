@@ -103,7 +103,7 @@ DO i=1,n_run                            !number of iterations
             fit(k)=eff_index
             ! write on file if efficiency index is greater than mineff_index
             IF (eff_index .ge. mineff_index) THEN
-                WRITE(10)(x(j,k),j=1,n_par),eff_index
+                ! WRITE(10)(x(j,k),j=1,n_par),eff_index
             END IF
         ELSE
             fit(k)=-1e30
@@ -215,7 +215,7 @@ DO i=1,n_run
 
     ! Scrittura su file se eff_index maggiore di soglia indbound
     IF (eff_index .ge. mineff_index) THEN
-        WRITE(10)(par(j),j=1,n_par),eff_index
+        ! WRITE(10)(par(j),j=1,n_par),eff_index
     END IF
 
     IF (fit .gt. foptim) THEN
@@ -346,7 +346,7 @@ SUBROUTINE pso_array_init
                 fit(k)=eff_index
                 ! write on file if efficiency index is greater than mineff_index
                 IF (eff_index .ge. mineff_index) THEN
-                    WRITE(10)(x(j,k),j=1,n_par),eff_index
+                    ! WRITE(10)(x(j,k),j=1,n_par),eff_index
                 END IF
             ELSE
                 fit(k)=-1e30

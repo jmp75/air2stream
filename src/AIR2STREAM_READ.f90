@@ -297,3 +297,49 @@ END DO
 
 100 RETURN
 END
+
+!-------------------------------------------------------------------------------
+!               Initialise the cryptic tt array
+!-------------------------------------------------------------------------------
+SUBROUTINE initialise_tt()
+
+    USE commondata
+    
+    IMPLICIT NONE
+    
+    INTEGER :: i, j, k, status
+    INTEGER :: n_year, leap, year_ini
+
+    year_ini=date(366,1)
+    ! the 1st year is replicated. The 1st year is always considered 365 days long
+    n_year=CEILING((n_tot-365)/365.25)
+    
+    ! check leap years + define tt
+    k=0
+    DO j=1,365
+        tt(k+j)=REAL(j)/365.0d0
+    END DO
+    k=365
+    DO i=1,n_year
+        CALL leap_year(year_ini+i-1,leap)
+        IF(leap==0) THEN
+            DO j=1,365
+                IF (k+j .gt. n_tot) THEN
+                    EXIT
+                END IF
+                tt(k+j)=REAL(j)/365.0d0
+            END DO
+            k=k+365
+        ELSE
+            DO j=1,366
+                IF (k+j .gt. n_tot) THEN
+                    EXIT
+                END IF
+                tt(k+j)=REAL(j)/366.0d0
+            END DO
+            k=k+366
+        END IF
+    END DO
+    
+    RETURN
+END
