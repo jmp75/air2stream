@@ -10,3 +10,7 @@ build/*
 *.so
 *.log
 __pycache__/
+
+.vscode/
+*/.ipynb_checkpoints/
+*/.f2py_f2cmap
