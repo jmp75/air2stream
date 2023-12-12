@@ -1123,7 +1123,7 @@ def read_tseries(p):
     read_tseries(p)
     
     
-    Defined at AIR2STREAM_READ.f90 lines 164-246
+    Defined at AIR2STREAM_READ.f90 lines 164-247
     
     Parameters
     ----------
@@ -1131,6 +1131,17 @@ def read_tseries(p):
     
     """
     _a2s.f90wrap_read_tseries(p=p)
+
+def initialise_tt():
+    """
+    initialise_tt()
+    
+    
+    Defined at AIR2STREAM_READ.f90 lines 252-285
+    
+    
+    """
+    _a2s.f90wrap_initialise_tt()
 
 def forward_mode():
     """
