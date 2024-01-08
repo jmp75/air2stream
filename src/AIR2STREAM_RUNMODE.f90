@@ -51,7 +51,7 @@ dw=(wmax-wmin)/n_run
 w=wmax
 
 ! random set of parameters during the first step
-CALL random_seed()
+call random_init(.true., .true.) ! JMP: make repeatable ; was CALL random_seed()
 CALL random_number(x)
 CALL random_number(v)
 DO j=1,n_par
@@ -74,7 +74,7 @@ DO j=1,n_par
 END DO
 
 DO i=1,n_run                            !number of iterations
-    CALL random_seed()
+    call random_init(.true., .true.) ! JMP: make repeatable ; was CALL random_seed()
     DO k=1,n_particles
         CALL random_number(r)
         status=0
@@ -193,7 +193,7 @@ foptim=-999
 ! open file for the writing of all parameter set + efficiency index
 OPEN(unit=10,file=TRIM(folder)//'/0_'//TRIM(runmode)//'_'//fun_obj//'_'//TRIM(station)//'_'//series//'_'//TRIM(time_res)//'.out',status='unknown',action='write',access='stream', form='unformatted')
 
-CALL random_seed()
+call random_init(.true., .true.) ! JMP: make repeatable ; was CALL random_seed()
 
 ! Initialization of matrix permut + permutation (shuffle)
 DO j=1,n_par
@@ -293,7 +293,7 @@ SUBROUTINE pso_array_init
     dw=(wmax-wmin)/n_run
     w=wmax
 
-    CALL random_seed()
+    call random_init(.true., .true.) ! JMP: make repeatable ; was CALL random_seed()
     CALL random_number(x)
     CALL random_number(v)
     DO j=1,n_par
@@ -317,7 +317,7 @@ SUBROUTINE pso_array_init
     END DO
     
     DO i=1,n_run                            !number of iterations
-        CALL random_seed()
+        call random_init(.true., .true.) ! JMP: make repeatable ; was CALL random_seed()
         DO k=1,n_particles
             CALL random_number(r)
             status=0
