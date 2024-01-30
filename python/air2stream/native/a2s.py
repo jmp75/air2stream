@@ -1107,12 +1107,59 @@ def read_calibration():
     """
     _a2s.f90wrap_read_calibration()
 
+def deallocate_input_arrays():
+    """
+    deallocate_input_arrays()
+    
+    
+    Defined at AIR2STREAM_READ.f90 lines 152-159
+    
+    
+    """
+    _a2s.f90wrap_deallocate_input_arrays()
+
+def deallocate_i_arrays():
+    """
+    deallocate_i_arrays()
+    
+    
+    Defined at AIR2STREAM_READ.f90 lines 161-171
+    
+    
+    """
+    _a2s.f90wrap_deallocate_i_arrays()
+
+def init_param_arrays():
+    """
+    init_param_arrays()
+    
+    
+    Defined at AIR2STREAM_READ.f90 lines 173-182
+    
+    
+    """
+    _a2s.f90wrap_init_param_arrays()
+
+def init_input_arrays(n):
+    """
+    init_input_arrays(n)
+    
+    
+    Defined at AIR2STREAM_READ.f90 lines 184-198
+    
+    Parameters
+    ----------
+    n : int
+    
+    """
+    _a2s.f90wrap_init_input_arrays(n=n)
+
 def read_validation():
     """
     read_validation()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 152-159
+    Defined at AIR2STREAM_READ.f90 lines 203-209
     
     
     """
@@ -1123,7 +1170,7 @@ def read_tseries(p):
     read_tseries(p)
     
     
-    Defined at AIR2STREAM_READ.f90 lines 164-247
+    Defined at AIR2STREAM_READ.f90 lines 214-290
     
     Parameters
     ----------
@@ -1137,7 +1184,7 @@ def initialise_tt():
     initialise_tt()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 252-285
+    Defined at AIR2STREAM_READ.f90 lines 295-328
     
     
     """
@@ -1271,7 +1318,7 @@ def aggregation():
     aggregation()
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 212-338
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 212-339
     
     
     """
@@ -1282,7 +1329,7 @@ def statis():
     statis()
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 343-358
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 344-359
     
     
     """
@@ -1293,7 +1340,7 @@ def forward():
     forward()
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 363-407
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 364-408
     
     
     """
@@ -1304,7 +1351,7 @@ def best(fit):
     part, foptim = best(fit)
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 412-426
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 413-427
     
     Parameters
     ----------
@@ -1324,7 +1371,7 @@ def leap_year(y):
     i = leap_year(y)
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 431-443
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 432-444
     
     Parameters
     ----------
@@ -1337,29 +1384,4 @@ def leap_year(y):
     """
     i = _a2s.f90wrap_leap_year(y=y)
     return i
-
-def init_param_arrays():
-    """
-    init_param_arrays()
-    
-    
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 445-454
-    
-    
-    """
-    _a2s.f90wrap_init_param_arrays()
-
-def init_input_arrays(n):
-    """
-    init_input_arrays(n)
-    
-    
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 456-468
-    
-    Parameters
-    ----------
-    n : int
-    
-    """
-    _a2s.f90wrap_init_input_arrays(n=n)
 

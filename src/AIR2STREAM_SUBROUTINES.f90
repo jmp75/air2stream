@@ -277,6 +277,8 @@ ELSEIF (pp==3) THEN
     READ(time_res,'(i2)') qty
 END IF
 
+call deallocate_i_arrays()
+
 ALLOCATE(I_pos(n_tot),stat=status)
 I_pos=-999
 Twat_obs_agg=-999
@@ -382,7 +384,7 @@ I_inf(2:n_dat,1)=I_inf(1:n_dat-1,2)+1
 ALLOCATE(A(n_units,3),B(n_tot))
 A=I_inf;
 B=I_pos
-DEALLOCATE(I_inf,I_pos)
+call deallocate_i_arrays()
 ALLOCATE(I_inf(n_dat,3),I_pos(n_pos))
 I_inf=A(1:n_dat,:)
 I_pos=B(1:n_pos)
@@ -528,32 +530,3 @@ END IF
 RETURN
 END
 
-
-SUBROUTINE init_param_arrays()
-    USE commondata
-    IMPLICIT NONE
-    INTEGER :: status
-    ! allocation of parameter matrices
-    ALLOCATE(parmin(n_par),stat=status)
-    ALLOCATE(parmax(n_par),stat=status)
-    ALLOCATE(flag_par(n_par),stat=status)
-    ALLOCATE(par(n_par),stat=status)
-    ALLOCATE(par_best(n_par),stat=status)
-END
-
-SUBROUTINE init_input_arrays(n)
-    USE commondata
-    IMPLICIT NONE
-    INTEGER :: n
-    INTEGER :: status
-    n_tot=n
-    ALLOCATE(date(n_tot,3),stat=status)
-    ALLOCATE(Tair(n_tot),stat=status)
-    ALLOCATE(Twat_obs(n_tot),stat=status)
-    ALLOCATE(Twat_obs_agg(n_tot),stat=status)
-    ALLOCATE(Twat_mod(n_tot),stat=status)
-    ALLOCATE(Twat_mod_agg(n_tot),stat=status)
-    ALLOCATE(tt(n_tot),stat=status)
-    ALLOCATE(Q(n_tot),stat=status)
-
-END

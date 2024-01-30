@@ -86,6 +86,7 @@ def use_streamflow_stats(streamflow_not_gapfilled:pd.Series):
     _cc.n_q = len(q_positive)
 
 def prepare_calibration():
+    # _a2s.deallocate_input_arrays()
     _a2s.aggregation()
     _a2s.statis()
 
@@ -95,6 +96,7 @@ def execute(p:Optional[np.ndarray]=None):
     if p is not None:
         set_parameters(p)
     _a2s.forward_mode()
+    return _cc.par_best, _cc.finalfit
 
 def _model_array_to_tseries(x:np.ndarray):
     data = missing_code_as_nan(x)
@@ -115,6 +117,9 @@ def fit():
 
 def fitted_parameters():
     return _cc.par_best
+
+def fitted_objective():
+    return _cc.finalfit
 
 def set_parameters(p:np.ndarray):
     _cc.par = p

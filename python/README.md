@@ -2,7 +2,7 @@
 
 ## Installing on a Linux machine from source
 
-Assumption: you have an environment (conda or venv or whatever) where you can install packages.
+Assumption: you have an environment (conda or venv or whatever) where you can install packages. For instance and note for self, I use `conda activate hydrofc`.
 
 ```sh
 which gfortran
@@ -26,7 +26,7 @@ pip install wheel twine
 
 ## EASI
 
-https://docs.csiro.easi-eo.solutions/user-guide/developers/jupyterlab/virtual-environment/
+Using [virtual environments in EASI](https://docs.csiro.easi-eo.solutions/user-guide/developers/jupyterlab/virtual-environment/)
 
 ```sh
 MYENV=hm
@@ -78,4 +78,4 @@ from air2stream.native import a2s
 dir(a2s)
 ```
 
-Next, you can open the sample notebook(s) in [../air2stream/notebooks](../air2stream/notebooks)
+Next, you can open the sample notebook(s) in [../notebooks](../notebooks)

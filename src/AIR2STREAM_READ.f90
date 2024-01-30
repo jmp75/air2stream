@@ -176,6 +176,73 @@ CALL read_Tseries('c')
 RETURN
 END
 
+
+!-------------------------------------------------------------------------------
+!               deallocates all arrays, clean slate to set new data inputs
+!-------------------------------------------------------------------------------
+SUBROUTINE deallocate_input_arrays
+
+    USE commondata
+    
+    IMPLICIT NONE
+    
+    ! tests that these are not already unallocated; may matter or not not sure.
+    if (ALLOCATED(Twat_obs_agg)) THEN
+
+        DEALLOCATE(date, tt, Tair, Twat_obs, Twat_obs_agg, Twat_mod, Twat_mod_agg, Q)
+    END IF
+    
+    RETURN
+END
+
+SUBROUTINE deallocate_i_arrays
+
+    USE commondata
+    
+    IMPLICIT NONE
+    
+    ! tests that these are not already unallocated; may matter or not not sure.
+    if (ALLOCATED(I_pos)) THEN
+        DEALLOCATE(I_pos)
+    END IF
+    if (ALLOCATED(I_inf)) THEN
+        DEALLOCATE(I_inf)
+    END IF
+    
+    RETURN
+END
+
+SUBROUTINE init_param_arrays()
+    USE commondata
+    IMPLICIT NONE
+    INTEGER :: status
+    ! allocation of parameter matrices
+    ALLOCATE(parmin(n_par),stat=status)
+    ALLOCATE(parmax(n_par),stat=status)
+    ALLOCATE(flag_par(n_par),stat=status)
+    ALLOCATE(par(n_par),stat=status)
+    ALLOCATE(par_best(n_par),stat=status)
+END
+
+SUBROUTINE init_input_arrays(n)
+    USE commondata
+    IMPLICIT NONE
+    INTEGER :: n
+    INTEGER :: status
+    n_tot=n
+
+    call deallocate_input_arrays()
+    ALLOCATE(date(n_tot,3),stat=status)
+    ALLOCATE(Tair(n_tot),stat=status)
+    ALLOCATE(Twat_obs(n_tot),stat=status)
+    ALLOCATE(Twat_obs_agg(n_tot),stat=status)
+    ALLOCATE(Twat_mod(n_tot),stat=status)
+    ALLOCATE(Twat_mod_agg(n_tot),stat=status)
+    ALLOCATE(tt(n_tot),stat=status)
+    ALLOCATE(Q(n_tot),stat=status)
+
+END
+
 !-------------------------------------------------------------------------------
 !               READ VALIDATION PERIOD
 !-------------------------------------------------------------------------------
@@ -185,9 +252,7 @@ USE commondata
 
 IMPLICIT NONE
 
-
-DEALLOCATE(date, tt, Tair, Twat_obs, Twat_obs_agg, Twat_mod, Twat_mod_agg, Q)
-DEALLOCATE(I_pos, I_inf)
+call deallocate_input_arrays()
 
 ! read T series (validation)
 CALL read_Tseries('v')
@@ -239,14 +304,8 @@ IF (p=='v' .and. n_tot .lt. 365) THEN
 END IF
 n_year=CEILING(n_tot/365.25)
 n_tot=n_tot+365             ! the 1st year is replicated. The 1st year is always considered 365 days long
-ALLOCATE(date(n_tot,3),stat=status)
-ALLOCATE(Tair(n_tot),stat=status)
-ALLOCATE(Twat_obs(n_tot),stat=status)
-ALLOCATE(Twat_obs_agg(n_tot),stat=status)
-ALLOCATE(Twat_mod(n_tot),stat=status)
-ALLOCATE(Twat_mod_agg(n_tot),stat=status)
-ALLOCATE(tt(n_tot),stat=status)
-ALLOCATE(Q(n_tot),stat=status)
+
+call init_input_arrays(n_tot)
 
 Qmedia = 0.0d0
 n_Q = 0
