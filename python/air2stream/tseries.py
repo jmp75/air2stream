@@ -8,7 +8,7 @@ import numpy as np, pandas as pd
 _plus_one_day = pd.Timedelta(days=1)
 _MISSING_DATA_VALUE=-999.0
 
-def utc_to_aus_est(d:pd.Timestamp) -> pd.Timestamp: # '2001-11-14 14:00:00'
+def utc_to_aus_est(d:pd.Timestamp, strict=True) -> pd.Timestamp: # '2001-11-14 14:00:00'
     """transform a UTC timestamp to a 'midnight' Australian Eastern Standard Time timestamp
 
     Args:
@@ -18,14 +18,15 @@ def utc_to_aus_est(d:pd.Timestamp) -> pd.Timestamp: # '2001-11-14 14:00:00'
         pd.Timestamp: Australian Eastern Standard Time timestamp at midnight
     """
     str_d = str(d)
-    assert str_d[-8:] == '14:00:00'
+    if strict:
+        assert str_d[-8:] == '14:00:00'
     date_only = pd.Timestamp(str_d[:10]) # '2001-11-15 00:00:00'
     return date_only + _plus_one_day
 
 
 def series_utc_to_aus_est(tseries:pd.Series) -> pd.Series:
     """transform a UTC timestamp series to a 'midnight' Australian Eastern Standard Time timestamp series"""
-    localised_index = pd.DatetimeIndex([utc_to_aus_est(d) for d in tseries.index])
+    localised_index = pd.DatetimeIndex([utc_to_aus_est(d, strict=False) for d in tseries.index])
     return pd.Series(data=tseries.values, index=localised_index)
 
 def min_date(dates:Sequence[pd.Timestamp]) -> pd.Timestamp:
