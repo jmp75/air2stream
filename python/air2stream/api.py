@@ -57,6 +57,15 @@ def set_defaults_parameters():
 
 _time_index = None
 
+def _init_input_arrays(n:int):
+    """Reinitialise common data arrays.
+    
+    air2stream uses a cache of arrays. We need to clear this cache otherwise really bad
+    things happen when we change the size of the input arrays, notably in a calibration/validation context within the same program. 
+    """
+    _a2s.commondata._arrays.clear()
+    _a2s.init_input_arrays(n)
+
 def set_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series, water_temp_series:pd.Series):
     global _time_index
     years = [x.year for x in streamflow_series.index]
@@ -64,7 +73,7 @@ def set_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series, water_temp_
     days = [x.day for x in streamflow_series.index]
     _time_index = streamflow_series.index.copy()
     n = len(days)
-    _a2s.init_input_arrays(n)
+    _init_input_arrays(n)
     _cc.date[:,0] = years
     _cc.date[:,1] = months
     _cc.date[:,2] = days

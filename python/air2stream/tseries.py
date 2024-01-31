@@ -120,7 +120,10 @@ def nan_as_missing_code(x:np.ndarray) -> np.ndarray:
 
 def missing_code_as_nan(x:np.ndarray) -> np.ndarray:
     y = x.copy()
-    y[np.equal(x, _MISSING_DATA_VALUE)] = np.nan
+    is_missing_val = np.equal(x, _MISSING_DATA_VALUE)
+    # We need to replace these with NaN but only if there is something to replace. Exception otherwise.
+    if np.any(is_missing_val):
+        y[is_missing_val] = np.nan
     return y
 
 def first_not_missing(x):
