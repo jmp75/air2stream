@@ -46,6 +46,13 @@ def set_defaults():
     _cc.wmax = 0.9
     _cc.wmin = 0.4
 
+def set_version(version: int):
+    _cc.version = version
+    _a2s.feasible_parameters_for_version()
+
+def get_version():
+    return _cc.version
+
 
 _SOME_DEFAUT_PARAMETERS = np.array([0.958264, 0.522815, 0.441700, -0.207825, 18.512997, 5.366099, 0.529306, 3.053014])
 
@@ -54,6 +61,16 @@ def set_defaults_parameters():
     _cc.parmin = np.array([-5, -5, -5, -1, 0, 0, 0, -1], dtype=float)
     _cc.parmax = np.array([15, 1.5, 5, 1, 20, 10, 1, 5], dtype=float)
     _cc.par = _SOME_DEFAUT_PARAMETERS
+
+def min_parameters():
+    return _cc.parmin
+
+def max_parameters():
+    return _cc.parmax
+
+def parameter_names():
+    # Hack
+    return [f"p_{i+1}" for i in range(len(max_parameters()))] 
 
 _time_index = None
 
@@ -132,3 +149,12 @@ def fitted_objective():
 
 def set_parameters(p:np.ndarray):
     _cc.par = p
+
+def get_parameters():
+    return _cc.par.copy()
+
+def set_parameter(i:int, p:float):
+    _cc.par[i] = p
+
+def get_parameter(i:int) -> float:
+    return _cc.par[i]

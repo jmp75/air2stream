@@ -58,6 +58,7 @@ The native library for the air2stream wrapper is dependent on the version of pyt
 
 ```sh
 a2s_src=${HOME}/src/air2stream
+cd ${a2s_src}/python
 ./regen_wrapper.sh ${a2s_src}
 # cheap check
 ls *.so

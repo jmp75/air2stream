@@ -178,6 +178,39 @@ END
 
 
 !-------------------------------------------------------------------------------
+!         sets feasible parameters to match the model version               
+!-------------------------------------------------------------------------------
+SUBROUTINE feasible_parameters_for_version
+    USE commondata
+
+    ! parameters that are not used are zeroed
+    flag_par=.true.
+    IF (version == 3) THEN                                      !air2stream with 3 parameters
+        parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;
+        parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+        parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.;
+        parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.;
+        parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    END IF
+    IF (version == 4) THEN                                      !air2stream with 4 parameters
+        parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+        parmin(6)=0;    parmax(6)=0;    flag_par(6)=.false.;
+        parmin(7)=0;    parmax(7)=0;    flag_par(7)=.false.;
+        parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    END IF
+    IF (version == 5) THEN                                      !air2stream with 5 parameters
+        parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;
+        parmin(5)=0;    parmax(5)=0;    flag_par(5)=.false.;
+        parmin(8)=0;    parmax(8)=0;    flag_par(8)=.false.;
+    ENDIF
+    IF (version == 7) THEN                                      !air2stream with 7 parameters
+        parmin(4)=0;    parmax(4)=0;    flag_par(4)=.false.;
+    END IF
+
+END
+
+
+!-------------------------------------------------------------------------------
 !               deallocates all arrays, clean slate to set new data inputs
 !-------------------------------------------------------------------------------
 SUBROUTINE deallocate_input_arrays

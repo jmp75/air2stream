@@ -1107,12 +1107,23 @@ def read_calibration():
     """
     _a2s.f90wrap_read_calibration()
 
+def feasible_parameters_for_version():
+    """
+    feasible_parameters_for_version()
+    
+    
+    Defined at AIR2STREAM_READ.f90 lines 152-176
+    
+    
+    """
+    _a2s.f90wrap_feasible_parameters_for_version()
+
 def deallocate_input_arrays():
     """
     deallocate_input_arrays()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 152-159
+    Defined at AIR2STREAM_READ.f90 lines 181-188
     
     
     """
@@ -1123,7 +1134,7 @@ def deallocate_i_arrays():
     deallocate_i_arrays()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 161-171
+    Defined at AIR2STREAM_READ.f90 lines 190-200
     
     
     """
@@ -1134,7 +1145,7 @@ def init_param_arrays():
     init_param_arrays()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 173-182
+    Defined at AIR2STREAM_READ.f90 lines 202-211
     
     
     """
@@ -1145,7 +1156,7 @@ def init_input_arrays(n):
     init_input_arrays(n)
     
     
-    Defined at AIR2STREAM_READ.f90 lines 184-198
+    Defined at AIR2STREAM_READ.f90 lines 213-227
     
     Parameters
     ----------
@@ -1159,7 +1170,7 @@ def read_validation():
     read_validation()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 203-209
+    Defined at AIR2STREAM_READ.f90 lines 232-238
     
     
     """
@@ -1170,7 +1181,7 @@ def read_tseries(p):
     read_tseries(p)
     
     
-    Defined at AIR2STREAM_READ.f90 lines 214-290
+    Defined at AIR2STREAM_READ.f90 lines 243-319
     
     Parameters
     ----------
@@ -1184,7 +1195,7 @@ def initialise_tt():
     initialise_tt()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 295-328
+    Defined at AIR2STREAM_READ.f90 lines 324-357
     
     
     """
