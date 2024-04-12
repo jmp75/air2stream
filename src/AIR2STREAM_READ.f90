@@ -392,8 +392,13 @@ END
 
 !-------------------------------------------------------------------------------
 !               Initialise the cryptic tt array
+!     **IMPORTANT**. need to initialise an array that holds the 
+! fractional calendar year information. This is used in a cosine for one of the algorithm
+! Note that some assumptions in this functions are inherited from the air2stream 
+! implementation as of 2023 (calibration only, one year warmup)
+!  https://jira.csiro.au/projects/HYDROML/issues/HYDROML-19
 !-------------------------------------------------------------------------------
-SUBROUTINE initialise_tt()
+SUBROUTINE init_fractional_year_series_calib()
 
     USE commondata
     

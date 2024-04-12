@@ -14,6 +14,20 @@ finalfit=eff_index
 RETURN
 END SUBROUTINE
 
+!-------------------------------------------------------------------------------
+!    Simulation mode for ungauged station with no observed Water Temperature
+!-------------------------------------------------------------------------------
+SUBROUTINE simulation_mode
+
+    USE commondata
+    
+    IMPLICIT NONE
+    ! call model air2stream
+    CALL call_model
+        
+    RETURN
+END SUBROUTINE
+
 
 !-------------------------------------------------------------------------------
 !               PSO

@@ -1,5 +1,5 @@
 from __future__ import print_function, absolute_import, division
-import _a2s
+import _A2S
 import f90wrap.runtime
 import logging
 import numpy
@@ -21,7 +21,7 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 5
         
         """
-        return _a2s.f90wrap_commondata__get__n_par()
+        return _A2S.f90wrap_commondata__get__n_par()
     
     @property
     def n_q(self):
@@ -32,11 +32,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 6
         
         """
-        return _a2s.f90wrap_commondata__get__n_q()
+        return _A2S.f90wrap_commondata__get__n_q()
     
     @n_q.setter
     def n_q(self, n_q):
-        _a2s.f90wrap_commondata__set__n_q(n_q)
+        _A2S.f90wrap_commondata__set__n_q(n_q)
     
     @property
     def qmedia(self):
@@ -47,11 +47,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 7
         
         """
-        return _a2s.f90wrap_commondata__get__qmedia()
+        return _A2S.f90wrap_commondata__get__qmedia()
     
     @qmedia.setter
     def qmedia(self, qmedia):
-        _a2s.f90wrap_commondata__set__qmedia(qmedia)
+        _A2S.f90wrap_commondata__set__qmedia(qmedia)
     
     @property
     def theta_j(self):
@@ -62,11 +62,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 7
         
         """
-        return _a2s.f90wrap_commondata__get__theta_j()
+        return _A2S.f90wrap_commondata__get__theta_j()
     
     @theta_j.setter
     def theta_j(self, theta_j):
-        _a2s.f90wrap_commondata__set__theta_j(theta_j)
+        _A2S.f90wrap_commondata__set__theta_j(theta_j)
     
     @property
     def theta_j1(self):
@@ -77,11 +77,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 7
         
         """
-        return _a2s.f90wrap_commondata__get__theta_j1()
+        return _A2S.f90wrap_commondata__get__theta_j1()
     
     @theta_j1.setter
     def theta_j1(self, theta_j1):
-        _a2s.f90wrap_commondata__set__theta_j1(theta_j1)
+        _A2S.f90wrap_commondata__set__theta_j1(theta_j1)
     
     @property
     def dd_j(self):
@@ -92,11 +92,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 7
         
         """
-        return _a2s.f90wrap_commondata__get__dd_j()
+        return _A2S.f90wrap_commondata__get__dd_j()
     
     @dd_j.setter
     def dd_j(self, dd_j):
-        _a2s.f90wrap_commondata__set__dd_j(dd_j)
+        _A2S.f90wrap_commondata__set__dd_j(dd_j)
     
     @property
     def dd_j1(self):
@@ -107,11 +107,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 7
         
         """
-        return _a2s.f90wrap_commondata__get__dd_j1()
+        return _A2S.f90wrap_commondata__get__dd_j1()
     
     @dd_j1.setter
     def dd_j1(self, dd_j1):
-        _a2s.f90wrap_commondata__set__dd_j1(dd_j1)
+        _A2S.f90wrap_commondata__set__dd_j1(dd_j1)
     
     @property
     def pi(self):
@@ -122,7 +122,7 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 8
         
         """
-        return _a2s.f90wrap_commondata__get__pi()
+        return _A2S.f90wrap_commondata__get__pi()
     
     @property
     def ttt(self):
@@ -133,7 +133,7 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 9
         
         """
-        return _a2s.f90wrap_commondata__get__ttt()
+        return _A2S.f90wrap_commondata__get__ttt()
     
     @property
     def n_tot(self):
@@ -144,11 +144,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 10
         
         """
-        return _a2s.f90wrap_commondata__get__n_tot()
+        return _A2S.f90wrap_commondata__get__n_tot()
     
     @n_tot.setter
     def n_tot(self, n_tot):
-        _a2s.f90wrap_commondata__set__n_tot(n_tot)
+        _A2S.f90wrap_commondata__set__n_tot(n_tot)
     
     @property
     def n_dat(self):
@@ -159,11 +159,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 10
         
         """
-        return _a2s.f90wrap_commondata__get__n_dat()
+        return _A2S.f90wrap_commondata__get__n_dat()
     
     @n_dat.setter
     def n_dat(self, n_dat):
-        _a2s.f90wrap_commondata__set__n_dat(n_dat)
+        _A2S.f90wrap_commondata__set__n_dat(n_dat)
     
     @property
     def version(self):
@@ -174,11 +174,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 11
         
         """
-        return _a2s.f90wrap_commondata__get__version()
+        return _A2S.f90wrap_commondata__get__version()
     
     @version.setter
     def version(self, version):
-        _a2s.f90wrap_commondata__set__version(version)
+        _A2S.f90wrap_commondata__set__version(version)
     
     @property
     def qty(self):
@@ -189,11 +189,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 11
         
         """
-        return _a2s.f90wrap_commondata__get__qty()
+        return _A2S.f90wrap_commondata__get__qty()
     
     @qty.setter
     def qty(self, qty):
-        _a2s.f90wrap_commondata__set__qty(qty)
+        _A2S.f90wrap_commondata__set__qty(qty)
     
     @property
     def i_pos(self):
@@ -205,13 +205,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__i_pos(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__i_pos(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             i_pos = self._arrays[array_handle]
         else:
             i_pos = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__i_pos)
+                                    _A2S.f90wrap_commondata__array__i_pos)
             self._arrays[array_handle] = i_pos
         return i_pos
     
@@ -229,13 +229,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__i_inf(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__i_inf(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             i_inf = self._arrays[array_handle]
         else:
             i_inf = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__i_inf)
+                                    _A2S.f90wrap_commondata__array__i_inf)
             self._arrays[array_handle] = i_inf
         return i_inf
     
@@ -253,13 +253,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__date(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__date(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             date = self._arrays[array_handle]
         else:
             date = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__date)
+                                    _A2S.f90wrap_commondata__array__date)
             self._arrays[array_handle] = date
         return date
     
@@ -276,11 +276,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 15
         
         """
-        return _a2s.f90wrap_commondata__get__tice_cover()
+        return _A2S.f90wrap_commondata__get__tice_cover()
     
     @tice_cover.setter
     def tice_cover(self, tice_cover):
-        _a2s.f90wrap_commondata__set__tice_cover(tice_cover)
+        _A2S.f90wrap_commondata__set__tice_cover(tice_cover)
     
     @property
     def prc(self):
@@ -291,11 +291,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 15
         
         """
-        return _a2s.f90wrap_commondata__get__prc()
+        return _A2S.f90wrap_commondata__get__prc()
     
     @prc.setter
     def prc(self, prc):
-        _a2s.f90wrap_commondata__set__prc(prc)
+        _A2S.f90wrap_commondata__set__prc(prc)
     
     @property
     def mean_obs(self):
@@ -306,11 +306,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 16
         
         """
-        return _a2s.f90wrap_commondata__get__mean_obs()
+        return _A2S.f90wrap_commondata__get__mean_obs()
     
     @mean_obs.setter
     def mean_obs(self, mean_obs):
-        _a2s.f90wrap_commondata__set__mean_obs(mean_obs)
+        _A2S.f90wrap_commondata__set__mean_obs(mean_obs)
     
     @property
     def tss_obs(self):
@@ -321,11 +321,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 16
         
         """
-        return _a2s.f90wrap_commondata__get__tss_obs()
+        return _A2S.f90wrap_commondata__get__tss_obs()
     
     @tss_obs.setter
     def tss_obs(self, tss_obs):
-        _a2s.f90wrap_commondata__set__tss_obs(tss_obs)
+        _A2S.f90wrap_commondata__set__tss_obs(tss_obs)
     
     @property
     def std_obs(self):
@@ -336,11 +336,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 16
         
         """
-        return _a2s.f90wrap_commondata__get__std_obs()
+        return _A2S.f90wrap_commondata__get__std_obs()
     
     @std_obs.setter
     def std_obs(self, std_obs):
-        _a2s.f90wrap_commondata__set__std_obs(std_obs)
+        _A2S.f90wrap_commondata__set__std_obs(std_obs)
     
     @property
     def mineff_index(self):
@@ -351,11 +351,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 17
         
         """
-        return _a2s.f90wrap_commondata__get__mineff_index()
+        return _A2S.f90wrap_commondata__get__mineff_index()
     
     @mineff_index.setter
     def mineff_index(self, mineff_index):
-        _a2s.f90wrap_commondata__set__mineff_index(mineff_index)
+        _A2S.f90wrap_commondata__set__mineff_index(mineff_index)
     
     @property
     def finalfit(self):
@@ -366,11 +366,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 17
         
         """
-        return _a2s.f90wrap_commondata__get__finalfit()
+        return _A2S.f90wrap_commondata__get__finalfit()
     
     @finalfit.setter
     def finalfit(self, finalfit):
-        _a2s.f90wrap_commondata__set__finalfit(finalfit)
+        _A2S.f90wrap_commondata__set__finalfit(finalfit)
     
     @property
     def tt(self):
@@ -382,13 +382,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__tt(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__tt(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             tt = self._arrays[array_handle]
         else:
             tt = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__tt)
+                                    _A2S.f90wrap_commondata__array__tt)
             self._arrays[array_handle] = tt
         return tt
     
@@ -406,13 +406,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__tair(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__tair(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             tair = self._arrays[array_handle]
         else:
             tair = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__tair)
+                                    _A2S.f90wrap_commondata__array__tair)
             self._arrays[array_handle] = tair
         return tair
     
@@ -430,13 +430,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__twat_obs_agg(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__twat_obs_agg(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             twat_obs_agg = self._arrays[array_handle]
         else:
             twat_obs_agg = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__twat_obs_agg)
+                                    _A2S.f90wrap_commondata__array__twat_obs_agg)
             self._arrays[array_handle] = twat_obs_agg
         return twat_obs_agg
     
@@ -454,13 +454,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__twat_obs(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__twat_obs(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             twat_obs = self._arrays[array_handle]
         else:
             twat_obs = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__twat_obs)
+                                    _A2S.f90wrap_commondata__array__twat_obs)
             self._arrays[array_handle] = twat_obs
         return twat_obs
     
@@ -478,13 +478,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__q(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__q(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             q = self._arrays[array_handle]
         else:
             q = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__q)
+                                    _A2S.f90wrap_commondata__array__q)
             self._arrays[array_handle] = q
         return q
     
@@ -502,13 +502,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__twat_mod(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__twat_mod(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             twat_mod = self._arrays[array_handle]
         else:
             twat_mod = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__twat_mod)
+                                    _A2S.f90wrap_commondata__array__twat_mod)
             self._arrays[array_handle] = twat_mod
         return twat_mod
     
@@ -526,13 +526,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__twat_mod_agg(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__twat_mod_agg(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             twat_mod_agg = self._arrays[array_handle]
         else:
             twat_mod_agg = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__twat_mod_agg)
+                                    _A2S.f90wrap_commondata__array__twat_mod_agg)
             self._arrays[array_handle] = twat_mod_agg
         return twat_mod_agg
     
@@ -550,13 +550,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__parmin(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__parmin(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             parmin = self._arrays[array_handle]
         else:
             parmin = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__parmin)
+                                    _A2S.f90wrap_commondata__array__parmin)
             self._arrays[array_handle] = parmin
         return parmin
     
@@ -574,13 +574,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__parmax(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__parmax(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             parmax = self._arrays[array_handle]
         else:
             parmax = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__parmax)
+                                    _A2S.f90wrap_commondata__array__parmax)
             self._arrays[array_handle] = parmax
         return parmax
     
@@ -598,13 +598,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__par(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__par(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             par = self._arrays[array_handle]
         else:
             par = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__par)
+                                    _A2S.f90wrap_commondata__array__par)
             self._arrays[array_handle] = par
         return par
     
@@ -622,13 +622,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__par_best(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__par_best(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             par_best = self._arrays[array_handle]
         else:
             par_best = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__par_best)
+                                    _A2S.f90wrap_commondata__array__par_best)
             self._arrays[array_handle] = par_best
         return par_best
     
@@ -645,11 +645,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 23
         
         """
-        return _a2s.f90wrap_commondata__get__folder()
+        return _A2S.f90wrap_commondata__get__folder()
     
     @folder.setter
     def folder(self, folder):
-        _a2s.f90wrap_commondata__set__folder(folder)
+        _A2S.f90wrap_commondata__set__folder(folder)
     
     @property
     def inputfile(self):
@@ -660,11 +660,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__inputfile()
+        return _A2S.f90wrap_commondata__get__inputfile()
     
     @inputfile.setter
     def inputfile(self, inputfile):
-        _a2s.f90wrap_commondata__set__inputfile(inputfile)
+        _A2S.f90wrap_commondata__set__inputfile(inputfile)
     
     @property
     def name(self):
@@ -675,11 +675,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__name()
+        return _A2S.f90wrap_commondata__get__name()
     
     @name.setter
     def name(self, name):
-        _a2s.f90wrap_commondata__set__name(name)
+        _A2S.f90wrap_commondata__set__name(name)
     
     @property
     def air_station(self):
@@ -690,11 +690,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__air_station()
+        return _A2S.f90wrap_commondata__get__air_station()
     
     @air_station.setter
     def air_station(self, air_station):
-        _a2s.f90wrap_commondata__set__air_station(air_station)
+        _A2S.f90wrap_commondata__set__air_station(air_station)
     
     @property
     def water_station(self):
@@ -705,11 +705,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__water_station()
+        return _A2S.f90wrap_commondata__get__water_station()
     
     @water_station.setter
     def water_station(self, water_station):
-        _a2s.f90wrap_commondata__set__water_station(water_station)
+        _A2S.f90wrap_commondata__set__water_station(water_station)
     
     @property
     def station(self):
@@ -720,11 +720,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__station()
+        return _A2S.f90wrap_commondata__get__station()
     
     @station.setter
     def station(self, station):
-        _a2s.f90wrap_commondata__set__station(station)
+        _A2S.f90wrap_commondata__set__station(station)
     
     @property
     def model(self):
@@ -735,11 +735,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__model()
+        return _A2S.f90wrap_commondata__get__model()
     
     @model.setter
     def model(self, model):
-        _a2s.f90wrap_commondata__set__model(model)
+        _A2S.f90wrap_commondata__set__model(model)
     
     @property
     def runmode(self):
@@ -750,11 +750,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 24
         
         """
-        return _a2s.f90wrap_commondata__get__runmode()
+        return _A2S.f90wrap_commondata__get__runmode()
     
     @runmode.setter
     def runmode(self, runmode):
-        _a2s.f90wrap_commondata__set__runmode(runmode)
+        _A2S.f90wrap_commondata__set__runmode(runmode)
     
     @property
     def series(self):
@@ -765,11 +765,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 25
         
         """
-        return _a2s.f90wrap_commondata__get__series()
+        return _A2S.f90wrap_commondata__get__series()
     
     @series.setter
     def series(self, series):
-        _a2s.f90wrap_commondata__set__series(series)
+        _A2S.f90wrap_commondata__set__series(series)
     
     @property
     def unit(self):
@@ -780,11 +780,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 25
         
         """
-        return _a2s.f90wrap_commondata__get__unit()
+        return _A2S.f90wrap_commondata__get__unit()
     
     @unit.setter
     def unit(self, unit):
-        _a2s.f90wrap_commondata__set__unit(unit)
+        _A2S.f90wrap_commondata__set__unit(unit)
     
     @property
     def time_res(self):
@@ -795,11 +795,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 26
         
         """
-        return _a2s.f90wrap_commondata__get__time_res()
+        return _A2S.f90wrap_commondata__get__time_res()
     
     @time_res.setter
     def time_res(self, time_res):
-        _a2s.f90wrap_commondata__set__time_res(time_res)
+        _A2S.f90wrap_commondata__set__time_res(time_res)
     
     @property
     def fun_obj(self):
@@ -810,11 +810,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 27
         
         """
-        return _a2s.f90wrap_commondata__get__fun_obj()
+        return _A2S.f90wrap_commondata__get__fun_obj()
     
     @fun_obj.setter
     def fun_obj(self, fun_obj):
-        _a2s.f90wrap_commondata__set__fun_obj(fun_obj)
+        _A2S.f90wrap_commondata__set__fun_obj(fun_obj)
     
     @property
     def mod_num(self):
@@ -825,11 +825,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 27
         
         """
-        return _a2s.f90wrap_commondata__get__mod_num()
+        return _A2S.f90wrap_commondata__get__mod_num()
     
     @mod_num.setter
     def mod_num(self, mod_num):
-        _a2s.f90wrap_commondata__set__mod_num(mod_num)
+        _A2S.f90wrap_commondata__set__mod_num(mod_num)
     
     @property
     def flag_par(self):
@@ -841,13 +841,13 @@ class Commondata(f90wrap.runtime.FortranModule):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _a2s.f90wrap_commondata__array__flag_par(f90wrap.runtime.empty_handle)
+            _A2S.f90wrap_commondata__array__flag_par(f90wrap.runtime.empty_handle)
         if array_handle in self._arrays:
             flag_par = self._arrays[array_handle]
         else:
             flag_par = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     f90wrap.runtime.empty_handle,
-                                    _a2s.f90wrap_commondata__array__flag_par)
+                                    _A2S.f90wrap_commondata__array__flag_par)
             self._arrays[array_handle] = flag_par
         return flag_par
     
@@ -864,11 +864,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 29
         
         """
-        return _a2s.f90wrap_commondata__get__n_run()
+        return _A2S.f90wrap_commondata__get__n_run()
     
     @n_run.setter
     def n_run(self, n_run):
-        _a2s.f90wrap_commondata__set__n_run(n_run)
+        _A2S.f90wrap_commondata__set__n_run(n_run)
     
     @property
     def n_particles(self):
@@ -879,11 +879,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 29
         
         """
-        return _a2s.f90wrap_commondata__get__n_particles()
+        return _A2S.f90wrap_commondata__get__n_particles()
     
     @n_particles.setter
     def n_particles(self, n_particles):
-        _a2s.f90wrap_commondata__set__n_particles(n_particles)
+        _A2S.f90wrap_commondata__set__n_particles(n_particles)
     
     @property
     def c1(self):
@@ -894,11 +894,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 30
         
         """
-        return _a2s.f90wrap_commondata__get__c1()
+        return _A2S.f90wrap_commondata__get__c1()
     
     @c1.setter
     def c1(self, c1):
-        _a2s.f90wrap_commondata__set__c1(c1)
+        _A2S.f90wrap_commondata__set__c1(c1)
     
     @property
     def c2(self):
@@ -909,11 +909,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 30
         
         """
-        return _a2s.f90wrap_commondata__get__c2()
+        return _A2S.f90wrap_commondata__get__c2()
     
     @c2.setter
     def c2(self, c2):
-        _a2s.f90wrap_commondata__set__c2(c2)
+        _A2S.f90wrap_commondata__set__c2(c2)
     
     @property
     def wmin(self):
@@ -924,11 +924,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 30
         
         """
-        return _a2s.f90wrap_commondata__get__wmin()
+        return _A2S.f90wrap_commondata__get__wmin()
     
     @wmin.setter
     def wmin(self, wmin):
-        _a2s.f90wrap_commondata__set__wmin(wmin)
+        _A2S.f90wrap_commondata__set__wmin(wmin)
     
     @property
     def wmax(self):
@@ -939,11 +939,11 @@ class Commondata(f90wrap.runtime.FortranModule):
         Defined at AIR2STREAM_MODULES.f90 line 30
         
         """
-        return _a2s.f90wrap_commondata__get__wmax()
+        return _A2S.f90wrap_commondata__get__wmax()
     
     @wmax.setter
     def wmax(self, wmax):
-        _a2s.f90wrap_commondata__set__wmax(wmax)
+        _A2S.f90wrap_commondata__set__wmax(wmax)
     
     def __str__(self):
         ret = ['<commondata>{\n']
@@ -1072,7 +1072,7 @@ def print_help():
     
     
     """
-    _a2s.f90wrap_print_help()
+    _A2S.f90wrap_print_help()
 
 def print_byebye():
     """
@@ -1083,7 +1083,7 @@ def print_byebye():
     
     
     """
-    _a2s.f90wrap_print_byebye()
+    _A2S.f90wrap_print_byebye()
 
 def parse_command_args():
     """
@@ -1094,7 +1094,7 @@ def parse_command_args():
     
     
     """
-    _a2s.f90wrap_parse_command_args()
+    _A2S.f90wrap_parse_command_args()
 
 def read_calibration():
     """
@@ -1105,101 +1105,32 @@ def read_calibration():
     
     
     """
-    _a2s.f90wrap_read_calibration()
-
-def feasible_parameters_for_version():
-    """
-    feasible_parameters_for_version()
-    
-    
-    Defined at AIR2STREAM_READ.f90 lines 152-176
-    
-    
-    """
-    _a2s.f90wrap_feasible_parameters_for_version()
-
-def deallocate_input_arrays():
-    """
-    deallocate_input_arrays()
-    
-    
-    Defined at AIR2STREAM_READ.f90 lines 181-188
-    
-    
-    """
-    _a2s.f90wrap_deallocate_input_arrays()
-
-def deallocate_i_arrays():
-    """
-    deallocate_i_arrays()
-    
-    
-    Defined at AIR2STREAM_READ.f90 lines 190-200
-    
-    
-    """
-    _a2s.f90wrap_deallocate_i_arrays()
-
-def init_param_arrays():
-    """
-    init_param_arrays()
-    
-    
-    Defined at AIR2STREAM_READ.f90 lines 202-211
-    
-    
-    """
-    _a2s.f90wrap_init_param_arrays()
-
-def init_input_arrays(n):
-    """
-    init_input_arrays(n)
-    
-    
-    Defined at AIR2STREAM_READ.f90 lines 213-227
-    
-    Parameters
-    ----------
-    n : int
-    
-    """
-    _a2s.f90wrap_init_input_arrays(n=n)
+    _A2S.f90wrap_read_calibration()
 
 def read_validation():
     """
     read_validation()
     
     
-    Defined at AIR2STREAM_READ.f90 lines 232-238
+    Defined at AIR2STREAM_READ.f90 lines 152-159
     
     
     """
-    _a2s.f90wrap_read_validation()
+    _A2S.f90wrap_read_validation()
 
 def read_tseries(p):
     """
     read_tseries(p)
     
     
-    Defined at AIR2STREAM_READ.f90 lines 243-319
+    Defined at AIR2STREAM_READ.f90 lines 164-246
     
     Parameters
     ----------
     p : str
     
     """
-    _a2s.f90wrap_read_tseries(p=p)
-
-def init_fractional_year_series_calib():
-    """
-    init_fractional_year_series_calib()
-    
-    
-    Defined at AIR2STREAM_READ.f90 lines 329-362
-    
-    
-    """
-    _a2s.f90wrap_init_fractional_year_series_calib()
+    _A2S.f90wrap_read_tseries(p=p)
 
 def forward_mode():
     """
@@ -1210,47 +1141,36 @@ def forward_mode():
     
     
     """
-    _a2s.f90wrap_forward_mode()
-
-def simulation_mode():
-    """
-    simulation_mode()
-    
-    
-    Defined at AIR2STREAM_RUNMODE.f90 lines 13-18
-    
-    
-    """
-    _a2s.f90wrap_simulation_mode()
+    _A2S.f90wrap_forward_mode()
 
 def pso_mode():
     """
     pso_mode()
     
     
-    Defined at AIR2STREAM_RUNMODE.f90 lines 23-143
+    Defined at AIR2STREAM_RUNMODE.f90 lines 13-133
     
     
     """
-    _a2s.f90wrap_pso_mode()
+    _A2S.f90wrap_pso_mode()
 
 def lh_mode():
     """
     lh_mode()
     
     
-    Defined at AIR2STREAM_RUNMODE.f90 lines 148-195
+    Defined at AIR2STREAM_RUNMODE.f90 lines 138-185
     
     
     """
-    _a2s.f90wrap_lh_mode()
+    _A2S.f90wrap_lh_mode()
 
 def shuffle(a, n):
     """
     shuffle(a, n)
     
     
-    Defined at AIR2STREAM_RUNMODE.f90 lines 199-211
+    Defined at AIR2STREAM_RUNMODE.f90 lines 189-200
     
     Parameters
     ----------
@@ -1258,18 +1178,7 @@ def shuffle(a, n):
     n : int
     
     """
-    _a2s.f90wrap_shuffle(a=a, n=n)
-
-def pso_array_init():
-    """
-    pso_array_init()
-    
-    
-    Defined at AIR2STREAM_RUNMODE.f90 lines 213-331
-    
-    
-    """
-    _a2s.f90wrap_pso_array_init()
+    _A2S.f90wrap_shuffle(a=a, n=n)
 
 def sub_1(ei):
     """
@@ -1283,7 +1192,7 @@ def sub_1(ei):
     ei : float
     
     """
-    _a2s.f90wrap_sub_1(ei=ei)
+    _A2S.f90wrap_sub_1(ei=ei)
 
 def call_model():
     """
@@ -1295,7 +1204,7 @@ def call_model():
     
     ------------RK4
     """
-    _a2s.f90wrap_call_model()
+    _A2S.f90wrap_call_model()
 
 def rk4_air2stream(ta, qq, tw, time):
     """
@@ -1316,7 +1225,7 @@ def rk4_air2stream(ta, qq, tw, time):
     k : float
     
     """
-    k = _a2s.f90wrap_rk4_air2stream(ta=ta, qq=qq, tw=tw, time=time)
+    k = _A2S.f90wrap_rk4_air2stream(ta=ta, qq=qq, tw=tw, time=time)
     return k
 
 def funcobj():
@@ -1332,7 +1241,7 @@ def funcobj():
     ind : float
     
     """
-    ind = _a2s.f90wrap_funcobj()
+    ind = _A2S.f90wrap_funcobj()
     return ind
 
 def aggregation():
@@ -1340,40 +1249,40 @@ def aggregation():
     aggregation()
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 212-339
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 212-338
     
     
     """
-    _a2s.f90wrap_aggregation()
+    _A2S.f90wrap_aggregation()
 
 def statis():
     """
     statis()
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 344-359
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 343-358
     
     
     """
-    _a2s.f90wrap_statis()
+    _A2S.f90wrap_statis()
 
 def forward():
     """
     forward()
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 364-408
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 363-407
     
     
     """
-    _a2s.f90wrap_forward()
+    _A2S.f90wrap_forward()
 
 def best(fit):
     """
     part, foptim = best(fit)
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 413-427
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 412-426
     
     Parameters
     ----------
@@ -1385,7 +1294,7 @@ def best(fit):
     foptim : float
     
     """
-    part, foptim = _a2s.f90wrap_best(fit=fit)
+    part, foptim = _A2S.f90wrap_best(fit=fit)
     return part, foptim
 
 def leap_year(y):
@@ -1393,7 +1302,7 @@ def leap_year(y):
     i = leap_year(y)
     
     
-    Defined at AIR2STREAM_SUBROUTINES.f90 lines 432-444
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 431-443
     
     Parameters
     ----------
@@ -1404,6 +1313,17 @@ def leap_year(y):
     i : int
     
     """
-    i = _a2s.f90wrap_leap_year(y=y)
+    i = _A2S.f90wrap_leap_year(y=y)
     return i
+
+def init_param_arrays():
+    """
+    init_param_arrays()
+    
+    
+    Defined at AIR2STREAM_SUBROUTINES.f90 lines 445-453
+    
+    
+    """
+    _A2S.f90wrap_init_param_arrays()
 

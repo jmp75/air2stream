@@ -83,7 +83,14 @@ def _init_input_arrays(n:int):
     _a2s.commondata._arrays.clear()
     _a2s.init_input_arrays(n)
 
-def set_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series, water_temp_series:pd.Series):
+_sim_initial_temperature = 0.0
+
+def set_initial_temperature(water_temp:float):
+    """Specifies the initial water temperature for the simulation. This is used to initialise the model."""
+    global _sim_initial_temperature
+    _sim_initial_temperature = water_temp
+
+def set_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series):
     global _time_index
     years = [x.year for x in streamflow_series.index]
     months = [x.month for x in streamflow_series.index]
@@ -94,15 +101,21 @@ def set_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series, water_temp_
     _cc.date[:,0] = years
     _cc.date[:,1] = months
     _cc.date[:,2] = days
-    # **IMPORTANT**. need to initialise a cryptic array. https://jira.csiro.au/projects/HYDROML/issues/HYDROML-19
-    _a2s.initialise_tt()
+    # **IMPORTANT**. we need to need to initialise a cryptic array `tt` which seems to hold a fractional day of year fraction 
+    # that comes into play for seasonality. https://jira.csiro.au/projects/HYDROML/issues/HYDROML-19
+    # I don;t have the patience or time to do this in fortran.
+    # Below is computationally suboptimal but unlikely to matter. Note still.
+    def days_in_year(year):
+        return pd.Timestamp(year=year, month=12, day=31).dayofyear
+    _cc.tt = np.array([x.timetuple().tm_yday/days_in_year(x.year) for x in streamflow_series.index], dtype=float)
 
     _cc.tair = nan_as_missing_code(t_mean_series.values)
-    _cc.twat_obs = nan_as_missing_code(water_temp_series.values)
-
     q_gapfilled = gap_fill(streamflow_series.values)
     _cc.q = q_gapfilled
 
+def set_calib_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series, water_temp_series:pd.Series):
+    set_inputs(t_mean_series, streamflow_series)
+    _cc.twat_obs = nan_as_missing_code(water_temp_series.values)
 
 def use_streamflow_stats(streamflow_not_gapfilled:pd.Series):
     q = nan_as_missing_code(streamflow_not_gapfilled.values)
@@ -123,6 +136,13 @@ def execute(p:Optional[np.ndarray]=None):
         set_parameters(p)
     _a2s.forward_mode()
     return _cc.par_best, _cc.finalfit
+
+def simulation_mode(p:Optional[np.ndarray]=None):
+    if p is not None:
+        set_parameters(p)
+    # I am uncomfortable with the following, but this using the legacy from the fortran code (first obs used as startup value)
+    _cc.twat_obs[0] = _sim_initial_temperature
+    _a2s.simulation_mode()
 
 def _model_array_to_tseries(x:np.ndarray):
     data = missing_code_as_nan(x)
