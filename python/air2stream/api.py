@@ -120,7 +120,7 @@ def set_calib_inputs(t_mean_series:pd.Series, streamflow_series:pd.Series, water
 def use_streamflow_stats(streamflow_not_gapfilled:pd.Series):
     q = nan_as_missing_code(streamflow_not_gapfilled.values)
     q_positive = q[q >= 0]
-    if len(q_media) > 0:
+    if len(q_positive) > 0:
         q_media = q_positive.mean() # code says media (median?) but actually calcualtes mean.
     else:
         q_media = 0
