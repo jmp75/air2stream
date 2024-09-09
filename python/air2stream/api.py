@@ -151,6 +151,9 @@ def _model_array_to_tseries(x:np.ndarray):
     data = missing_code_as_nan(x)
     return pd.Series(index=_time_index, data=data)
 
+def model_array_to_tseries(x:np.ndarray):
+    return _model_array_to_tseries(x)
+
 def modelled_water_temperature():
     return _model_array_to_tseries(_cc.twat_mod)
 
@@ -159,6 +162,15 @@ def observed_water_temperature():
 
 def streamflow():
     return _model_array_to_tseries(_cc.q)
+
+def air_temperature():
+    return _model_array_to_tseries(_cc.tair)
+
+def set_streamflow(value:pd.Series):
+    _cc.q = nan_as_missing_code(value.values)
+
+def set_air_temperature(value:pd.Series):
+    _cc.tair = nan_as_missing_code(value.values)
 
 def fit():
     _a2s.pso_array_init()
