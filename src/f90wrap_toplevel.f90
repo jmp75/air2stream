@@ -1,15 +1,15 @@
 subroutine f90wrap_print_help
     implicit none
-    external print_help
+    external print_Help
     
-    call print_help()
+    call print_Help()
 end subroutine f90wrap_print_help
 
 subroutine f90wrap_print_byebye
     implicit none
-    external print_byebye
+    external print_ByeBye
     
-    call print_byebye()
+    call print_ByeBye()
 end subroutine f90wrap_print_byebye
 
 subroutine f90wrap_parse_command_args
@@ -71,10 +71,10 @@ end subroutine f90wrap_read_validation
 
 subroutine f90wrap_read_tseries(p)
     implicit none
-    external read_tseries
+    external read_Tseries
     
     character(1), intent(in) :: p
-    call read_tseries(p)
+    call read_Tseries(p)
 end subroutine f90wrap_read_tseries
 
 subroutine f90wrap_init_fractional_year_series_calib
@@ -100,27 +100,27 @@ end subroutine f90wrap_simulation_mode
 
 subroutine f90wrap_pso_mode
     implicit none
-    external pso_mode
+    external PSO_mode
     
-    call pso_mode()
+    call PSO_mode()
 end subroutine f90wrap_pso_mode
 
 subroutine f90wrap_lh_mode
     implicit none
-    external lh_mode
+    external LH_mode
     
-    call lh_mode()
+    call LH_mode()
 end subroutine f90wrap_lh_mode
 
 subroutine f90wrap_shuffle(a, n, n0)
     implicit none
-    external shuffle
+    external Shuffle
     
     integer, intent(inout), dimension(n0) :: a
     integer, intent(in) :: n
     integer :: n0
     !f2py intent(hide), depend(a) :: n0 = shape(a,0)
-    call shuffle(a, n)
+    call Shuffle(a, n)
 end subroutine f90wrap_shuffle
 
 subroutine f90wrap_pso_array_init
@@ -147,14 +147,14 @@ end subroutine f90wrap_call_model
 
 subroutine f90wrap_rk4_air2stream(ta, qq, tw, time, k)
     implicit none
-    external rk4_air2stream
+    external RK4_air2stream
     
     real(8), intent(in) :: ta
     real(8), intent(in) :: qq
     real(8), intent(in) :: tw
     real(8), intent(in) :: time
     real(8), intent(out) :: k
-    call rk4_air2stream(ta, qq, tw, time, k)
+    call RK4_air2stream(ta, qq, tw, time, k)
 end subroutine f90wrap_rk4_air2stream
 
 subroutine f90wrap_funcobj(ind)

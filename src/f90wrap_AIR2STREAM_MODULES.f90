@@ -8,37 +8,37 @@ subroutine f90wrap_commondata__get__n_par(f90wrap_n_par)
     f90wrap_n_par = commondata_n_par
 end subroutine f90wrap_commondata__get__n_par
 
-subroutine f90wrap_commondata__get__n_Q(f90wrap_n_Q)
+subroutine f90wrap_commondata__get__n_q(f90wrap_n_Q)
     use commondata, only: commondata_n_Q => n_Q
     implicit none
     integer, intent(out) :: f90wrap_n_Q
     
     f90wrap_n_Q = commondata_n_Q
-end subroutine f90wrap_commondata__get__n_Q
+end subroutine f90wrap_commondata__get__n_q
 
-subroutine f90wrap_commondata__set__n_Q(f90wrap_n_Q)
+subroutine f90wrap_commondata__set__n_q(f90wrap_n_Q)
     use commondata, only: commondata_n_Q => n_Q
     implicit none
     integer, intent(in) :: f90wrap_n_Q
     
     commondata_n_Q = f90wrap_n_Q
-end subroutine f90wrap_commondata__set__n_Q
+end subroutine f90wrap_commondata__set__n_q
 
-subroutine f90wrap_commondata__get__Qmedia(f90wrap_Qmedia)
+subroutine f90wrap_commondata__get__qmedia(f90wrap_Qmedia)
     use commondata, only: commondata_Qmedia => Qmedia
     implicit none
     real(8), intent(out) :: f90wrap_Qmedia
     
     f90wrap_Qmedia = commondata_Qmedia
-end subroutine f90wrap_commondata__get__Qmedia
+end subroutine f90wrap_commondata__get__qmedia
 
-subroutine f90wrap_commondata__set__Qmedia(f90wrap_Qmedia)
+subroutine f90wrap_commondata__set__qmedia(f90wrap_Qmedia)
     use commondata, only: commondata_Qmedia => Qmedia
     implicit none
     real(8), intent(in) :: f90wrap_Qmedia
     
     commondata_Qmedia = f90wrap_Qmedia
-end subroutine f90wrap_commondata__set__Qmedia
+end subroutine f90wrap_commondata__set__qmedia
 
 subroutine f90wrap_commondata__get__theta_j(f90wrap_theta_j)
     use commondata, only: commondata_theta_j => theta_j
@@ -72,37 +72,37 @@ subroutine f90wrap_commondata__set__theta_j1(f90wrap_theta_j1)
     commondata_theta_j1 = f90wrap_theta_j1
 end subroutine f90wrap_commondata__set__theta_j1
 
-subroutine f90wrap_commondata__get__DD_j(f90wrap_DD_j)
+subroutine f90wrap_commondata__get__dd_j(f90wrap_DD_j)
     use commondata, only: commondata_DD_j => DD_j
     implicit none
     real(8), intent(out) :: f90wrap_DD_j
     
     f90wrap_DD_j = commondata_DD_j
-end subroutine f90wrap_commondata__get__DD_j
+end subroutine f90wrap_commondata__get__dd_j
 
-subroutine f90wrap_commondata__set__DD_j(f90wrap_DD_j)
+subroutine f90wrap_commondata__set__dd_j(f90wrap_DD_j)
     use commondata, only: commondata_DD_j => DD_j
     implicit none
     real(8), intent(in) :: f90wrap_DD_j
     
     commondata_DD_j = f90wrap_DD_j
-end subroutine f90wrap_commondata__set__DD_j
+end subroutine f90wrap_commondata__set__dd_j
 
-subroutine f90wrap_commondata__get__DD_j1(f90wrap_DD_j1)
+subroutine f90wrap_commondata__get__dd_j1(f90wrap_DD_j1)
     use commondata, only: commondata_DD_j1 => DD_j1
     implicit none
     real(8), intent(out) :: f90wrap_DD_j1
     
     f90wrap_DD_j1 = commondata_DD_j1
-end subroutine f90wrap_commondata__get__DD_j1
+end subroutine f90wrap_commondata__get__dd_j1
 
-subroutine f90wrap_commondata__set__DD_j1(f90wrap_DD_j1)
+subroutine f90wrap_commondata__set__dd_j1(f90wrap_DD_j1)
     use commondata, only: commondata_DD_j1 => DD_j1
     implicit none
     real(8), intent(in) :: f90wrap_DD_j1
     
     commondata_DD_j1 = f90wrap_DD_j1
-end subroutine f90wrap_commondata__set__DD_j1
+end subroutine f90wrap_commondata__set__dd_j1
 
 subroutine f90wrap_commondata__get__pi(f90wrap_pi)
     use commondata, only: commondata_pi => pi
@@ -184,8 +184,8 @@ subroutine f90wrap_commondata__set__qty(f90wrap_qty)
     commondata_qty = f90wrap_qty
 end subroutine f90wrap_commondata__set__qty
 
-subroutine f90wrap_commondata__array__I_pos(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_i_pos => i_pos
+subroutine f90wrap_commondata__array__i_pos(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_i_pos => I_pos
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -196,16 +196,16 @@ subroutine f90wrap_commondata__array__I_pos(dummy_this, nd, dtype, dshape, dloc)
     
     nd = 1
     dtype = 5
-    if (allocated(commondata_I_pos)) then
-        dshape(1:1) = shape(commondata_I_pos)
-        dloc = loc(commondata_I_pos)
+    if (allocated(commondata_i_pos)) then
+        dshape(1:1) = shape(commondata_i_pos)
+        dloc = loc(commondata_i_pos)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__I_pos
+end subroutine f90wrap_commondata__array__i_pos
 
-subroutine f90wrap_commondata__array__I_inf(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_i_inf => i_inf
+subroutine f90wrap_commondata__array__i_inf(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_i_inf => I_inf
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -216,13 +216,13 @@ subroutine f90wrap_commondata__array__I_inf(dummy_this, nd, dtype, dshape, dloc)
     
     nd = 2
     dtype = 5
-    if (allocated(commondata_I_inf)) then
-        dshape(1:2) = shape(commondata_I_inf)
-        dloc = loc(commondata_I_inf)
+    if (allocated(commondata_i_inf)) then
+        dshape(1:2) = shape(commondata_i_inf)
+        dloc = loc(commondata_i_inf)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__I_inf
+end subroutine f90wrap_commondata__array__i_inf
 
 subroutine f90wrap_commondata__array__date(dummy_this, nd, dtype, dshape, dloc)
     use commondata, only: commondata_date => date
@@ -244,21 +244,21 @@ subroutine f90wrap_commondata__array__date(dummy_this, nd, dtype, dshape, dloc)
     end if
 end subroutine f90wrap_commondata__array__date
 
-subroutine f90wrap_commondata__get__Tice_cover(f90wrap_Tice_cover)
+subroutine f90wrap_commondata__get__tice_cover(f90wrap_Tice_cover)
     use commondata, only: commondata_Tice_cover => Tice_cover
     implicit none
     real(8), intent(out) :: f90wrap_Tice_cover
     
     f90wrap_Tice_cover = commondata_Tice_cover
-end subroutine f90wrap_commondata__get__Tice_cover
+end subroutine f90wrap_commondata__get__tice_cover
 
-subroutine f90wrap_commondata__set__Tice_cover(f90wrap_Tice_cover)
+subroutine f90wrap_commondata__set__tice_cover(f90wrap_Tice_cover)
     use commondata, only: commondata_Tice_cover => Tice_cover
     implicit none
     real(8), intent(in) :: f90wrap_Tice_cover
     
     commondata_Tice_cover = f90wrap_Tice_cover
-end subroutine f90wrap_commondata__set__Tice_cover
+end subroutine f90wrap_commondata__set__tice_cover
 
 subroutine f90wrap_commondata__get__prc(f90wrap_prc)
     use commondata, only: commondata_prc => prc
@@ -292,21 +292,21 @@ subroutine f90wrap_commondata__set__mean_obs(f90wrap_mean_obs)
     commondata_mean_obs = f90wrap_mean_obs
 end subroutine f90wrap_commondata__set__mean_obs
 
-subroutine f90wrap_commondata__get__TSS_obs(f90wrap_TSS_obs)
+subroutine f90wrap_commondata__get__tss_obs(f90wrap_TSS_obs)
     use commondata, only: commondata_TSS_obs => TSS_obs
     implicit none
     real(8), intent(out) :: f90wrap_TSS_obs
     
     f90wrap_TSS_obs = commondata_TSS_obs
-end subroutine f90wrap_commondata__get__TSS_obs
+end subroutine f90wrap_commondata__get__tss_obs
 
-subroutine f90wrap_commondata__set__TSS_obs(f90wrap_TSS_obs)
+subroutine f90wrap_commondata__set__tss_obs(f90wrap_TSS_obs)
     use commondata, only: commondata_TSS_obs => TSS_obs
     implicit none
     real(8), intent(in) :: f90wrap_TSS_obs
     
     commondata_TSS_obs = f90wrap_TSS_obs
-end subroutine f90wrap_commondata__set__TSS_obs
+end subroutine f90wrap_commondata__set__tss_obs
 
 subroutine f90wrap_commondata__get__std_obs(f90wrap_std_obs)
     use commondata, only: commondata_std_obs => std_obs
@@ -376,8 +376,8 @@ subroutine f90wrap_commondata__array__tt(dummy_this, nd, dtype, dshape, dloc)
     end if
 end subroutine f90wrap_commondata__array__tt
 
-subroutine f90wrap_commondata__array__Tair(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_tair => tair
+subroutine f90wrap_commondata__array__tair(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_tair => Tair
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -388,16 +388,16 @@ subroutine f90wrap_commondata__array__Tair(dummy_this, nd, dtype, dshape, dloc)
     
     nd = 1
     dtype = 12
-    if (allocated(commondata_Tair)) then
-        dshape(1:1) = shape(commondata_Tair)
-        dloc = loc(commondata_Tair)
+    if (allocated(commondata_tair)) then
+        dshape(1:1) = shape(commondata_tair)
+        dloc = loc(commondata_tair)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__Tair
+end subroutine f90wrap_commondata__array__tair
 
-subroutine f90wrap_commondata__array__Twat_obs_agg(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_twat_obs_agg => twat_obs_agg
+subroutine f90wrap_commondata__array__twat_obs_agg(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_twat_obs_agg => Twat_obs_agg
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -408,16 +408,16 @@ subroutine f90wrap_commondata__array__Twat_obs_agg(dummy_this, nd, dtype, dshape
     
     nd = 1
     dtype = 12
-    if (allocated(commondata_Twat_obs_agg)) then
-        dshape(1:1) = shape(commondata_Twat_obs_agg)
-        dloc = loc(commondata_Twat_obs_agg)
+    if (allocated(commondata_twat_obs_agg)) then
+        dshape(1:1) = shape(commondata_twat_obs_agg)
+        dloc = loc(commondata_twat_obs_agg)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__Twat_obs_agg
+end subroutine f90wrap_commondata__array__twat_obs_agg
 
-subroutine f90wrap_commondata__array__Twat_obs(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_twat_obs => twat_obs
+subroutine f90wrap_commondata__array__twat_obs(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_twat_obs => Twat_obs
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -428,16 +428,16 @@ subroutine f90wrap_commondata__array__Twat_obs(dummy_this, nd, dtype, dshape, dl
     
     nd = 1
     dtype = 12
-    if (allocated(commondata_Twat_obs)) then
-        dshape(1:1) = shape(commondata_Twat_obs)
-        dloc = loc(commondata_Twat_obs)
+    if (allocated(commondata_twat_obs)) then
+        dshape(1:1) = shape(commondata_twat_obs)
+        dloc = loc(commondata_twat_obs)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__Twat_obs
+end subroutine f90wrap_commondata__array__twat_obs
 
-subroutine f90wrap_commondata__array__Q(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_q => q
+subroutine f90wrap_commondata__array__q(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_q => Q
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -448,16 +448,16 @@ subroutine f90wrap_commondata__array__Q(dummy_this, nd, dtype, dshape, dloc)
     
     nd = 1
     dtype = 12
-    if (allocated(commondata_Q)) then
-        dshape(1:1) = shape(commondata_Q)
-        dloc = loc(commondata_Q)
+    if (allocated(commondata_q)) then
+        dshape(1:1) = shape(commondata_q)
+        dloc = loc(commondata_q)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__Q
+end subroutine f90wrap_commondata__array__q
 
-subroutine f90wrap_commondata__array__Twat_mod(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_twat_mod => twat_mod
+subroutine f90wrap_commondata__array__twat_mod(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_twat_mod => Twat_mod
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -468,16 +468,16 @@ subroutine f90wrap_commondata__array__Twat_mod(dummy_this, nd, dtype, dshape, dl
     
     nd = 1
     dtype = 12
-    if (allocated(commondata_Twat_mod)) then
-        dshape(1:1) = shape(commondata_Twat_mod)
-        dloc = loc(commondata_Twat_mod)
+    if (allocated(commondata_twat_mod)) then
+        dshape(1:1) = shape(commondata_twat_mod)
+        dloc = loc(commondata_twat_mod)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__Twat_mod
+end subroutine f90wrap_commondata__array__twat_mod
 
-subroutine f90wrap_commondata__array__Twat_mod_agg(dummy_this, nd, dtype, dshape, dloc)
-    use commondata, only: commondata_twat_mod_agg => twat_mod_agg
+subroutine f90wrap_commondata__array__twat_mod_agg(dummy_this, nd, dtype, dshape, dloc)
+    use commondata, only: commondata_twat_mod_agg => Twat_mod_agg
     use, intrinsic :: iso_c_binding, only : c_int
     implicit none
     integer, intent(in) :: dummy_this(2)
@@ -488,13 +488,13 @@ subroutine f90wrap_commondata__array__Twat_mod_agg(dummy_this, nd, dtype, dshape
     
     nd = 1
     dtype = 12
-    if (allocated(commondata_Twat_mod_agg)) then
-        dshape(1:1) = shape(commondata_Twat_mod_agg)
-        dloc = loc(commondata_Twat_mod_agg)
+    if (allocated(commondata_twat_mod_agg)) then
+        dshape(1:1) = shape(commondata_twat_mod_agg)
+        dloc = loc(commondata_twat_mod_agg)
     else
         dloc = 0
     end if
-end subroutine f90wrap_commondata__array__Twat_mod_agg
+end subroutine f90wrap_commondata__array__twat_mod_agg
 
 subroutine f90wrap_commondata__array__parmin(dummy_this, nd, dtype, dshape, dloc)
     use commondata, only: commondata_parmin => parmin
