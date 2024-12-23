@@ -84,6 +84,25 @@ def set_fun_obj(value: str):
     _check_valid_options(value, ["KGE", "NSE", "RMS"])
     _cc.fun_obj = value
 
+def get_n_run() -> int:
+    """The number of runs (model iterations)."""
+    return _cc.n_run
+
+def set_n_run(value: int):
+    """The number of runs (model iterations)."""
+    if value < 1:
+        raise ValueError("n_run must be at least 1")
+    _cc.n_run = value
+
+def get_n_particles() -> int:
+    """The nuber of particles in the swarm optimisation."""
+    return _cc.n_particles
+
+def set_n_particles(value: int):
+    """The nuber of particles in the swarm optimisation."""
+    if value < 1:
+        raise ValueError("n_particles must be at least 1")
+    _cc.n_particles = value
 
 def set_mod_num(value: str):
     """mod_num :   RK4 , EUL , RK2 , CRN"""
